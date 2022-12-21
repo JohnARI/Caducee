@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>47720915705-sqmgid23o1ikak9h76s6n4b4oi2ob5j4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.47720915705-sqmgid23o1ikak9h76s6n4b4oi2ob5j4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD9qZurPNF_4yFenLgqKHkhd-4PlX4WaR8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>47720915705</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.caducee</string>
+	<key>PROJECT_ID</key>
+	<string>caducee-b7292</string>
+	<key>STORAGE_BUCKET</key>
+	<string>caducee-b7292.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:47720915705:ios:785a13ce9786cb5d2b3828</string>
+</dict>
+</plist>

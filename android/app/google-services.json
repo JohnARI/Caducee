@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47720915705",
+    "project_id": "caducee-b7292",
+    "storage_bucket": "caducee-b7292.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47720915705:android:7b7b4972f2c31b0a2b3828",
+        "android_client_info": {
+          "package_name": "com.example.caducee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47720915705-e11lu0tm8om8t8q3iime3ltvqbso154n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-gBjNiAYU3I2XTmx16h04FVteerCLvGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47720915705-e11lu0tm8om8t8q3iime3ltvqbso154n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
