@@ -16,12 +16,14 @@ class _LoginScreenState extends State<LoginScreen> {
   String error = '';
   bool loading = false;
 
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool showLogin = true;
 
   @override
   void dispose() {
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -31,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _formKey.currentState!.reset();
       error = '';
+      nameController.text = '';
       emailController.text = '';
       passwordController.text = '';
       showLogin = !showLogin;
@@ -68,6 +71,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    !showLogin ? 
+                    TextFormField(
+                      controller: nameController,
+                      decoration: textInputDecoration.copyWith(
+                        hintText: 'Nom',
+                      ),
+                      validator: (value) =>
+                          value!.isEmpty ? 'Entrez un nom' : null,
+                    ) : Container(),
+                    !showLogin ? const SizedBox(height: 10.0) : Container(),
                     // Input email
                     TextFormField(
                       controller: emailController,
@@ -86,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: 'Mot de passe',
                       ),
                       validator: (value) =>
-                          value!.length > 6 ? 'Le mot de passe doit au moins faire 6 charactères' : null,
+                          value!.length < 6 ? 'Entrez un mot de passe d\'au moins 6 caractères' : null,
                       obscureText: true,
                     ),
                     const SizedBox(height: 10.0),
@@ -104,10 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                           var password = passwordController.value.text;
                           var email = emailController.value.text;
+                          var name = nameController.value.text;
 
                           dynamic result = showLogin 
                           ? await _auth.signInWithEmailAndPassword(email, password) 
-                          : await _auth.registerWithEmailAndPassword(email, password);
+                          : await _auth.registerWithEmailAndPassword(name, email, password);
                           if (result == null) {
                             setState(() {
                               error = 'Email ou mot de passe incorrect';

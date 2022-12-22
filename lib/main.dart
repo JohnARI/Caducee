@@ -22,12 +22,17 @@ class MyApp extends StatelessWidget {
       value: AuthenticationService().user,
       initialData: null,
       child: MaterialApp(
+        title: 'Caducee',
+        // routes: {
+        //   '/allDrugs': (context) => allDrugs(),
+        // },
         debugShowCheckedModeBanner: false,
         home: const SplashScreenWrapper(),
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
       ),
+      
     );
   }
 }

@@ -17,7 +17,7 @@ class SplashScreenWrapper extends StatelessWidget {
     if (user == null) {
       return const LoginScreen();
     } else {
-      return HomeScreen();
+      return const HomeScreen();
     }
   }
 }

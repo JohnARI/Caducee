@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 // ignore: depend_on_referenced_packages
+import 'package:caducee/services/database.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/user.dart';
@@ -28,14 +30,27 @@ class AuthenticationService {
     }
   }
 
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(String name, String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
 
-      // TODO store new user in firestore
+      await DatabaseService(uid: user!.uid)
+          .saveUser(name, email);
 
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future changeName(String name) async {
+    try {
+      User? user = _auth.currentUser;
+      await DatabaseService(uid: user!.uid)
+          .saveUser(name, user.email!);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
