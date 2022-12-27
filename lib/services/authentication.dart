@@ -3,7 +3,6 @@
 import 'package:caducee/services/database.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../models/user.dart';
 
 class AuthenticationService {
