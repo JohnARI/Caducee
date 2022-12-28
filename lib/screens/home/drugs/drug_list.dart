@@ -1,5 +1,7 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api
 import 'package:caducee/common/const.dart';
+import 'package:caducee/services/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:caducee/models/drug.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +44,8 @@ class _DrugListState extends State<DrugList> {
         // search bar
         title: SizedBox(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
+            padding:
+                const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
             child: TextField(
               controller: _nameController,
               decoration: const InputDecoration(
@@ -53,8 +56,8 @@ class _DrugListState extends State<DrugList> {
                   size: 30,
                 ),
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: myGreen),
-                  ),
+                  borderSide: BorderSide(color: myGreen),
+                ),
               ),
               onChanged: (val) {
                 _filterDrugs(val);
@@ -73,36 +76,74 @@ class _DrugListState extends State<DrugList> {
   }
 }
 
-class DrugTile extends StatelessWidget {
+class DrugTile extends StatefulWidget {
   const DrugTile({super.key, required this.drug});
   final AppDrugData drug;
 
   @override
+  _DrugTileState createState() => _DrugTileState();
+}
+
+class _DrugTileState extends State<DrugTile> {
+  final user = FirebaseAuth.instance.currentUser;
+  late bool isFavorite;
+
+  void addToFavorites(AppDrugData drug) async {
+    await DatabaseService(uid: user!.uid).addDrugToFavorites(drug);
+  }
+
+  void removeFromFavorites(AppDrugData drug) async {
+    await DatabaseService(uid: user!.uid).removeDrugFromFavorites(drug);
+  }
+
+  void toggleFavorite() {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.drug.favorite.contains(user!.uid);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DrugInfoPage(drug: drug),
-            ),
+    final Icon bookmarkIcon = isFavorite
+        ? const Icon(
+            Icons.bookmark,
+            color: myGreen,
+            size: 30,
+          )
+        : const Icon(
+            Icons.bookmark_border,
+            color: myGreen,
+            size: 30,
           );
-        },
-        
-        child: Container(
-          margin: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 5.0,
-                spreadRadius: 1.0,
-                offset: Offset(0.0, 2.0),
+    return Container(
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 5.0,
+              spreadRadius: 1.0,
+              offset: Offset(0.0, 2.0),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DrugInfoPage(drug: widget.drug),
               ),
-            ],
-            borderRadius: BorderRadius.circular(12.0),
-          ),
+            );
+          },
           child: ListTile(
             leading: const SizedBox(
               width: 48.0,
@@ -116,23 +157,29 @@ class DrugTile extends StatelessWidget {
               ),
             ),
             title: Text(
-              drug.name,
+              widget.drug.name,
               style: const TextStyle(
                 fontSize: 16.0,
                 color: Colors.black,
               ),
             ),
             subtitle: Text(
-              drug.shortDesc,
+              widget.drug.shortDesc,
               style: const TextStyle(
                 fontSize: 12.0,
                 color: Colors.black,
               ),
             ),
             trailing: IconButton(
-              icon: const Icon(Icons.bookmark_border,
-                  color: myDarkGreen, size: 32.0),
-              onPressed: () {},
+              icon: bookmarkIcon,
+              onPressed: () {
+                if (isFavorite) {
+                  removeFromFavorites(widget.drug);
+                } else {
+                  addToFavorites(widget.drug);
+                }
+                toggleFavorite();
+              },
             ),
           ),
         ));

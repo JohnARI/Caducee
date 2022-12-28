@@ -1,8 +1,11 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:caducee/models/drug.dart';
 import 'package:caducee/models/user.dart';
 import 'package:caducee/models/category.dart';
-// ignore: depend_on_referenced_packages
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:diacritic/diacritic.dart';
 
 class DatabaseService {
   final String uid;
@@ -61,11 +64,12 @@ class DatabaseService {
         category: (doc.data() as Map<String, dynamic>)['category'],
         recommendation: (doc.data() as Map<String, dynamic>)['recommendation'],
         usage: (doc.data() as Map<String, dynamic>)['usage'],
+        favorite: (doc.data() as Map<String, dynamic>)['favorite'] == null ? [] : (doc.data() as Map<String, dynamic>)['favorite'].cast<String>(),
       );
     }).toList();
   }
 
-  Future<void> saveDrug(String name, List<String> brand, String shortDesc, String longDesc, List<String> dosage, String category, String recommendation, String usage) async {
+  Future<void> saveDrug(String name, List<String> brand, String shortDesc, String longDesc, List<String> dosage, String category, String recommendation, String usage, List<String> favorite) async {
     return await drugCollection.doc(name).set({
       'name': name,
       'brand': brand,
@@ -75,8 +79,36 @@ class DatabaseService {
       'category': category,
       'recommendation': recommendation,
       'usage': usage,
+      'favorite': favorite,
     });
   }
+
+  Future<void> addDrugToFavorites(AppDrugData drug) async {
+  try {
+    String normalizedName = removeDiacritics(drug.name);
+    await drugCollection.doc(normalizedName.toLowerCase()).update({
+      'favorite': FieldValue.arrayUnion([uid]),
+    });
+  } catch (e) {
+    return;
+  }
+}
+
+  Future<void> removeDrugFromFavorites(AppDrugData drug) async {
+  try {
+    String normalizedName = removeDiacritics(drug.name);
+    await drugCollection.doc(normalizedName.toLowerCase()).update({
+      'favorite': FieldValue.arrayRemove([uid]),
+    });
+  } catch (e) {
+    return;
+  }
+}
+
+  Stream<List<AppDrugData>> get favoriteDrugs {
+    return drugCollection.where('favorite', arrayContains: uid).snapshots().map(_drugListFromSnapshot);
+  }
+
 
   Stream<List<Category>> get categories {
     return _db.collection('categories').snapshots().map(_categoryListFromSnapshot);

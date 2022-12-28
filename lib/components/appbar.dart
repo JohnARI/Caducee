@@ -1,6 +1,6 @@
 import 'package:caducee/common/const.dart';
 import 'package:caducee/screens/home/drugs/category_list.dart';
-import 'package:caducee/screens/home/user_list.dart';
+import 'package:caducee/screens/home/drugs/favorite_drug.dart';
 import 'package:flutter/material.dart';
 import 'package:caducee/screens/home/drugs/drug_list.dart';
 
@@ -89,7 +89,7 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
                     ),
                     CategoryList(
                     ),
-                    UserList(
+                    FavoriteList(
                     ),
                   ],
                 ),

@@ -127,9 +127,6 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
                         return const SizedBox();
                       }
                     }
-                    if (widget.categoryName == 'All') {
-                      return const InkWell();
-                    }
                     return DrugTile(drug: filteredDrugs[index]);
                   },
                 ),
@@ -146,34 +143,33 @@ class DrugTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DrugInfoPage(drug: drug),
+    return Container(
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 5.0,
+              spreadRadius: 1.0,
+              offset: Offset(0.0, 2.0),
             ),
-          );
-        },
-        child: Container(
-          margin: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 5.0,
-                spreadRadius: 1.0,
-                offset: Offset(0.0, 2.0),
+          ],
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DrugInfoPage(drug: drug),
               ),
-            ],
-            borderRadius: BorderRadius.circular(12.0),
-          ),
+            );
+          },
           child: ListTile(
             leading: const SizedBox(
               width: 48.0,
               height: 48.0,
-        
               child: Center(
                 child: Image(
                   image: AssetImage('assets/images/iconLogo.png'),
