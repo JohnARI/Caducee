@@ -6,7 +6,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: Center(
         child: Image.asset('assets/images/loader.gif', width: 150, height: 150),
       ),

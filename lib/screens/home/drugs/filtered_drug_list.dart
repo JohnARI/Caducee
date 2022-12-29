@@ -144,16 +144,12 @@ class DrugTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 5.0,
-              spreadRadius: 1.0,
-              offset: Offset(0.0, 2.0),
-            ),
+          boxShadow: [
+            myBoxShadow,
+            myBoxShadow2,
           ],
           borderRadius: BorderRadius.circular(12.0),
         ),

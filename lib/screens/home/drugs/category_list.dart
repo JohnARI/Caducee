@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:caducee/models/category.dart';
+import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:caducee/common/const.dart';
@@ -15,12 +16,17 @@ class CategoryList extends StatefulWidget {
 class _CategoryListState extends State<CategoryList> {
   final _nameController = TextEditingController();
 
-  late List<Category> _filteredCategories;
+  List<Category> _filteredCategories = [];
 
   @override
   void initState() {
     super.initState();
-    _filteredCategories = context.read<List<Category>>();
+    final dbService = DatabaseService(uid: '');
+    dbService.getCategories().then((categories) {
+      setState(() {
+        _filteredCategories = categories;
+      });
+    });
   }
 
   void _filterCategories(String query) {
@@ -34,42 +40,41 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          title: SizedBox(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
-              child: TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: Icon(
-                    Icons.search,
-                    color: myGreen,
-                    size: 30,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: myGreen),
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: SizedBox(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
+            child: TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                suffixIcon: Icon(
+                  Icons.search,
+                  color: myGreen,
+                  size: 30,
                 ),
-                onChanged: (val) {
-                  _filterCategories(val);
-                },
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: myGreen),
+                ),
               ),
+              onChanged: (val) {
+                _filterCategories(val);
+              },
             ),
           ),
         ),
-        body: ListView.builder(
-            itemCount: _filteredCategories.length,
-            itemBuilder: (context, index) {
-              return CategoryTile(category: _filteredCategories[index]);
-            },
-          ),
-      );
-    
+      ),
+      body: ListView.builder(
+        itemCount: _filteredCategories.length,
+        itemBuilder: (context, index) {
+          return CategoryTile(category: _filteredCategories[index]);
+        },
+      ),
+    );
   }
 }
 
@@ -80,21 +85,17 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 5.0,
-            spreadRadius: 1.0,
-            offset: Offset(0.0, 2.0),
-          ),
+        boxShadow: [
+          myBoxShadow,
+          myBoxShadow2,
         ],
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: InkWell(
-        onTap: () { 
+        onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -130,12 +131,21 @@ class CategoryTile extends StatelessWidget {
           children: [
             Container(
               margin:
-                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
               child: Text(
                 category.description,
                 style: const TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+            ),
+            Container(
+              height: 5.0,
+              margin:
+                  const EdgeInsets.only(left: 150.0, right: 150.0, bottom: 8.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: myGreen,
               ),
             ),
           ],

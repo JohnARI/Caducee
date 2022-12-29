@@ -14,6 +14,7 @@ class DatabaseService {
 
   final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
   final CollectionReference drugCollection = FirebaseFirestore.instance.collection('drugs');
+  final CollectionReference categoryCollection = FirebaseFirestore.instance.collection('categories');
 
   Future<void> saveUser(String name, String email) async {
     return await userCollection.doc(uid).set({
@@ -51,6 +52,16 @@ class DatabaseService {
 
   Stream<List<AppDrugData>> get drugs {
     return drugCollection.snapshots().map(_drugListFromSnapshot);
+  }
+
+  Future<List<AppDrugData>> getDrugs() async {
+    final QuerySnapshot snapshot = await drugCollection.get();
+    return _drugListFromSnapshot(snapshot);
+  }
+
+  Future<List<Category>> getCategories() async {
+    final QuerySnapshot snapshot = await categoryCollection.get();
+    return _categoryListFromSnapshot(snapshot);
   }
 
   List<AppDrugData> _drugListFromSnapshot(QuerySnapshot snapshot) {

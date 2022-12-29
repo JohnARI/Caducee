@@ -45,16 +45,17 @@ class AuthenticationService {
     }
   }
 
-  Future changeName(String name) async {
+  Future resetPassword(String email) async {
     try {
-      User? user = _auth.currentUser;
-      await DatabaseService(uid: user!.uid)
-          .saveUser(name, user.email!);
-      return _userFromFirebaseUser(user);
+      return await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
       print(e.toString());
       return null;
     }
+  }
+
+  User? getCurrentUser() {
+    return _auth.currentUser;
   }
 
   Future signOut() async {

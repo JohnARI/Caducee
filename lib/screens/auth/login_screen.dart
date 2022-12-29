@@ -53,13 +53,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const SizedBox(height: 50.0),
                       SizedBox(
-                              height: 200,
-                              width: 200,
-                              child: Image.asset('assets/images/iconLogo.png')),
+                          height: 200,
+                          width: 200,
+                          child: Image.asset('assets/images/iconLogo.png')),
                       const Text(
                         'Bienvenue sur Caducée',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black54,
                           fontSize: 16.0,
                         ),
                       ),
@@ -76,8 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 controller: nameController,
                                 decoration: textInputDecoration.copyWith(
                                   hintText: 'Nom',
-                                  prefixIcon: const Icon(Icons.person,
-                                      color: myDarkGreen,),
+                                  prefixIcon: const Icon(
+                                    Icons.person,
+                                    color: myDarkGreen,
+                                  ),
                                   hintStyle: textColor,
                                 ),
                                 validator: (value) =>
@@ -90,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       !showLogin ? const SizedBox(height: 10.0) : Container(),
 
                       // Input email on both pages
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25.0),
                         child: TextFormField(
@@ -98,17 +101,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: textInputDecoration.copyWith(
                             hintText: 'Email',
                             hintStyle: textColor,
-                            prefixIcon: const Icon(Icons.email,
-                                color: myDarkGreen,),
+                            prefixIcon: const Icon(
+                              Icons.email,
+                              color: myDarkGreen,
+                            ),
                           ),
                           validator: (value) =>
                               value!.isEmpty ? 'Entrez un email' : null,
                         ),
                       ),
+
                       // End of input email on both pages
 
                       // Input password on both pages
                       const SizedBox(height: 10.0),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25.0),
                         child: TextFormField(
@@ -117,8 +124,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: textInputDecoration.copyWith(
                             hintText: 'Mot de passe',
                             hintStyle: textColor,
-                            prefixIcon: const Icon(Icons.lock,
-                                color: myDarkGreen),
+                            prefixIcon:
+                                const Icon(Icons.lock, color: myDarkGreen),
                           ),
                           validator: (value) => value!.length < 6
                               ? 'Entrez un mot de passe d\'au moins 6 caractères'
@@ -128,25 +135,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       // End of input password on both pages
 
-                      !showLogin
-                          ? Container()
-                          : const SizedBox(height: 10.0),
+                      !showLogin ? Container() : const SizedBox(height: 10.0),
 
                       !showLogin
                           ? Container()
-                          :
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Text('Mot de passe oublié ?',
-                                style: TextStyle(
-                                  color: Colors.white
-                                )),
-                          ],
-                        ),
-                      ),
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Text('Mot de passe oublié ?',
+                                      style: TextStyle(
+                                        color: Colors.black54,
+                                      )),
+                                ],
+                              ),
+                            ),
                       const SizedBox(height: 25.0),
 
                       // Submit button
@@ -201,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ? 'Vous n\'avez pas de compte ? Inscrivez-vous'
                               : 'Vous avez déjà un compte ? Connectez-vous',
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Colors.black54,
                           ),
                         ),
                       ),

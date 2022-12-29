@@ -17,13 +17,18 @@ class DrugList extends StatefulWidget {
 class _DrugListState extends State<DrugList> {
   final _nameController = TextEditingController();
 
-  late List<AppDrugData> _filteredDrugs;
+  List<AppDrugData> _filteredDrugs = [];
 
   @override
   void initState() {
-    super.initState();
-    _filteredDrugs = context.read<List<AppDrugData>>();
-  }
+  super.initState();
+  final dbService = DatabaseService(uid: '');
+  dbService.getDrugs().then((drugs) {
+    setState(() {
+      _filteredDrugs = drugs;
+    });
+  });
+}
 
   void _filterDrugs(String query) {
     final filtered = context.read<List<AppDrugData>>().where((drug) {
@@ -122,16 +127,12 @@ class _DrugTileState extends State<DrugTile> {
             size: 30,
           );
     return Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 5.0,
-              spreadRadius: 1.0,
-              offset: Offset(0.0, 2.0),
-            ),
+          boxShadow: [
+            myBoxShadow,
+            myBoxShadow2,
           ],
           borderRadius: BorderRadius.circular(12.0),
         ),

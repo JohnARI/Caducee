@@ -36,18 +36,12 @@ class _FavoriteListState extends State<FavoriteList> {
   }
 
   void _favoriteDrugs(String query) {
-    if (query.isEmpty) {
-      setState(() {
-        _favorites = _originalFavorites;
-      });
-    } else {
-      final favorites = _favorites.where((drug) {
-        return drug.name.toLowerCase().contains(query.toLowerCase());
-      }).toList();
-      setState(() {
-        _favorites = favorites;
-      });
-    }
+    final filtered = _originalFavorites.where((drug) {
+      return drug.name.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+    setState(() {
+      _favorites = filtered;
+    });
   }
 
   @override
@@ -85,11 +79,6 @@ class _FavoriteListState extends State<FavoriteList> {
       body: ListView.builder(
         itemCount: _favorites.length,
         itemBuilder: (context, index) {
-          if (_favorites.isEmpty) {
-            return const Center(
-              child: Text('Il n\'y a pas de médicaments favoris'),
-            );
-          }
           return FavoriteListTile(drug: _favorites[index]);
         },
       ),
@@ -143,16 +132,12 @@ class _FavoriteListTileState extends State<FavoriteListTile> {
             size: 30,
           );
     return Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 5.0,
-              spreadRadius: 1.0,
-              offset: Offset(0.0, 2.0),
-            ),
+          boxShadow: [
+            myBoxShadow,
+            myBoxShadow2,
           ],
           borderRadius: BorderRadius.circular(12.0),
         ),
