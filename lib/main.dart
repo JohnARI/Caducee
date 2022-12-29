@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Caducee',
+        title: 'Caducée',
         // routes: {
         //   '/allDrugs': (context) => allDrugs(),
         // },
