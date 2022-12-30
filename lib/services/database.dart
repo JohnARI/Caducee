@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:caducee/models/drug.dart';
 import 'package:caducee/models/user.dart';
 import 'package:caducee/models/category.dart';

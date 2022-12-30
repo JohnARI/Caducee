@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
-// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 
 class UserList extends StatefulWidget {

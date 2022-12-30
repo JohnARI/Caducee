@@ -1,4 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
 import 'package:caducee/common/const.dart';
 import 'package:caducee/models/drug.dart';
 import 'package:caducee/services/database.dart';
@@ -145,10 +144,10 @@ class DrugTile extends StatefulWidget {
   final AppDrugData drug;
 
   @override
-  _DrugTileState createState() => _DrugTileState();
+  DrugTileState createState() => DrugTileState();
 }
 
-class _DrugTileState extends State<DrugTile> {
+class DrugTileState extends State<DrugTile> {
   final user = FirebaseAuth.instance.currentUser;
   late bool isFavorite;
 
