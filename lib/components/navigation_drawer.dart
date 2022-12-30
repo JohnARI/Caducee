@@ -58,9 +58,6 @@ final user = AuthenticationService().getCurrentUser();
                 title: Text('Manon'),
                 
               ),
-              const SizedBox(
-                height: 420,
-              ),
               const Divider(),
               ListTile(
                 leading: const Icon(Icons.exit_to_app),

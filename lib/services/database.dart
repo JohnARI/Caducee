@@ -4,7 +4,6 @@ import 'package:caducee/models/drug.dart';
 import 'package:caducee/models/user.dart';
 import 'package:caducee/models/category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diacritic/diacritic.dart';
 
 class DatabaseService {

@@ -2,7 +2,6 @@
 
 import 'package:caducee/components/appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:caducee/services/authentication.dart';
 // ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 import '../../models/user.dart';
@@ -17,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final AuthenticationService _auth = AuthenticationService();
 
   @override
   Widget build(BuildContext context) {

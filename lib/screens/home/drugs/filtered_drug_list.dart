@@ -1,8 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:caducee/common/const.dart';
 import 'package:caducee/models/drug.dart';
+import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:caducee/screens/home/drugs/drug_info.dart';
 
 class FilteredDrugList extends StatefulWidget {
@@ -15,6 +17,7 @@ class FilteredDrugList extends StatefulWidget {
 
 class _FilteredDrugListState extends State<FilteredDrugList> {
   String name = '';
+
   @override
   Widget build(BuildContext context) {
     final drugs = Provider.of<List<AppDrugData>>(context);
@@ -137,12 +140,51 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
   }
 }
 
-class DrugTile extends StatelessWidget {
+class DrugTile extends StatefulWidget {
   const DrugTile({super.key, required this.drug});
   final AppDrugData drug;
 
   @override
+  _DrugTileState createState() => _DrugTileState();
+}
+
+class _DrugTileState extends State<DrugTile> {
+  final user = FirebaseAuth.instance.currentUser;
+  late bool isFavorite;
+
+  void addToFavorites(AppDrugData drug) async {
+    await DatabaseService(uid: user!.uid).addDrugToFavorites(drug);
+  }
+
+  void removeFromFavorites(AppDrugData drug) async {
+    await DatabaseService(uid: user!.uid).removeDrugFromFavorites(drug);
+  }
+
+  void toggleFavorite() {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.drug.favorite.contains(user!.uid);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final Icon bookmarkIcon = isFavorite
+        ? const Icon(
+            Icons.bookmark,
+            color: myGreen,
+            size: 30,
+          )
+        : const Icon(
+            Icons.bookmark_border,
+            color: myGreen,
+            size: 30,
+          );
     return Container(
         margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
         decoration: BoxDecoration(
@@ -158,7 +200,7 @@ class DrugTile extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DrugInfoPage(drug: drug),
+                builder: (context) => DrugInfoPage(drug: widget.drug),
               ),
             );
           },
@@ -175,23 +217,29 @@ class DrugTile extends StatelessWidget {
               ),
             ),
             title: Text(
-              drug.name,
+              widget.drug.name,
               style: const TextStyle(
                 fontSize: 16.0,
                 color: Colors.black,
               ),
             ),
             subtitle: Text(
-              drug.shortDesc,
+              widget.drug.shortDesc,
               style: const TextStyle(
                 fontSize: 12.0,
                 color: Colors.black,
               ),
             ),
             trailing: IconButton(
-              icon: const Icon(Icons.bookmark_border,
-                  color: myDarkGreen, size: 32.0),
-              onPressed: () {},
+              icon: bookmarkIcon,
+              onPressed: () {
+                if (isFavorite) {
+                  removeFromFavorites(widget.drug);
+                } else {
+                  addToFavorites(widget.drug);
+                }
+                toggleFavorite();
+              },
             ),
           ),
         ));
