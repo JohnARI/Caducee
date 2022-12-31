@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+// ignore: depend_on_referenced_packages
 import 'package:caducee/services/database.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user.dart';
 
@@ -21,6 +24,7 @@ class AuthenticationService {
 
       return _userFromFirebaseUser(user);
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
@@ -36,6 +40,7 @@ class AuthenticationService {
 
       return _userFromFirebaseUser(user);
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
@@ -44,6 +49,7 @@ class AuthenticationService {
     try {
       return await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
@@ -56,6 +62,7 @@ class AuthenticationService {
     try {
       return await _auth.signOut();
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }

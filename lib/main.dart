@@ -5,7 +5,9 @@ import 'package:caducee/screens/splashscreen_wrapper.dart';
 import 'package:caducee/services/authentication.dart';
 import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {

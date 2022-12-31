@@ -1,3 +1,4 @@
+// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api
 import 'package:caducee/common/const.dart';
 import 'package:caducee/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -90,10 +91,10 @@ class FavoriteListTile extends StatefulWidget {
   final AppDrugData drug;
 
   @override
-  FavoriteListTileState createState() => FavoriteListTileState();
+  _FavoriteListTileState createState() => _FavoriteListTileState();
 }
 
-class FavoriteListTileState extends State<FavoriteListTile> {
+class _FavoriteListTileState extends State<FavoriteListTile> {
   final user = FirebaseAuth.instance.currentUser;
   late bool isFavorite;
 
