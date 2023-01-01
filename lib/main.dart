@@ -13,12 +13,6 @@ import 'package:flutter/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.dark,
-  ));
   runApp(const MyApp());
 }
 
@@ -27,36 +21,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        StreamProvider<AppUser?>.value(
-          value: AuthenticationService().user,
-          initialData: null,
-        ),
-        StreamProvider<List<AppDrugData>>.value(
-          value: DatabaseService(uid: '').drugs,
-          initialData: const [],
-        ),
-        StreamProvider<List<Category>>.value(
-          value: DatabaseService(uid: '').categories,
-          initialData: const [],
-        ),
-      ],
-      child: MaterialApp(
-        title: 'Caducée',
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: MultiProvider(
+        providers: [
+          StreamProvider<AppUser?>.value(
+            value: AuthenticationService().user,
+            initialData: null,
+          ),
+          StreamProvider<List<AppDrugData>>.value(
+            value: DatabaseService(uid: '').drugs,
+            initialData: const [],
+          ),
+          StreamProvider<List<Category>>.value(
+            value: DatabaseService(uid: '').categories,
+            initialData: const [],
+          ),
         ],
-        supportedLocales: const [
-          Locale('fr', 'FR'),
-        ],
-
-
-        home: const SplashScreenWrapper(),
-        theme: ThemeData(
-          fontFamily: 'Poppins',
+        child: MaterialApp(
+          title: 'Caducée',
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreenWrapper(),
+          theme: ThemeData(
+            fontFamily: 'Poppins',
+    
+          ),
         ),
       ),
     );
