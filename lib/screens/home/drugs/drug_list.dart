@@ -51,7 +51,6 @@ class _DrugListState extends State<DrugList> {
             padding:
                 const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
             child: TextField(
-              autocorrect: true,
               controller: _nameController,
               decoration: const InputDecoration(
                 border: InputBorder.none,

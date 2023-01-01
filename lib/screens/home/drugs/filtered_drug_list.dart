@@ -43,7 +43,6 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 20.0),
               child: TextField(
-                autocorrect: true,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   suffixIcon: Icon(
@@ -87,7 +86,6 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 20.0),
               child: TextField(
-                autocorrect: true,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   suffixIcon: Icon(
