@@ -19,6 +19,46 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
+    DatabaseService dbService = DatabaseService(uid: '');
+    dbService.saveDrug(
+          'test',                                      /*uid*/
+          'Paracetamol',                               /*name*/
+          ['Panadol', 'Paracétamol'],                  /*brand*/
+          'shortDesc',                                 /*shortDesc*/ 
+          'longDesc',                                  /*longDesc*/
+          ['dosage'],                                  /*dosage*/
+          'category',                                  /*category*/
+          'recommendation',                            /*recommendation*/
+          'usage',                                     /*usage*/
+              []
+             );
+
+    dbService.saveDrug(
+          'test',                                      /*uid*/
+          'Paracetamol',                               /*name*/
+          ['Panadol', 'Paracétamol'],                  /*brand*/
+          'shortDesc',                                 /*shortDesc*/ 
+          'longDesc',                                  /*longDesc*/
+          ['dosage'],                                  /*dosage*/
+          'category',                                  /*category*/
+          'recommendation',                            /*recommendation*/
+          'usage',                                     /*usage*/
+              []
+             );
+
+    dbService.saveDrug(
+          'test',                                      /*uid*/
+          'Paracetamol',                               /*name*/
+          ['Panadol', 'Paracétamol'],                  /*brand*/
+          'shortDesc',                                 /*shortDesc*/ 
+          'longDesc',                                  /*longDesc*/
+          ['dosage'],                                  /*dosage*/
+          'category',                                  /*category*/
+          'recommendation',                            /*recommendation*/
+          'usage',                                     /*usage*/
+              []
+             );
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: const NavigationDrawerWidget(),
