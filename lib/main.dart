@@ -10,10 +10,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarBrightness: Brightness.dark,
@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Caducée',
         debugShowCheckedModeBanner: false,
-        home: const SplashScreenWrapper(),
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -53,12 +52,13 @@ class MyApp extends StatelessWidget {
         supportedLocales: const [
           Locale('fr', 'FR'),
         ],
+
+
+        home: const SplashScreenWrapper(),
         theme: ThemeData(
           fontFamily: 'Poppins',
         ),
-        ),
-        
-      );
-      
+      ),
+    );
   }
 }
