@@ -1,4 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api
 import 'package:caducee/common/const.dart';
 import 'package:caducee/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,7 +42,7 @@ class _DrugListState extends State<DrugList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: myTransparent,
         elevation: 0.0,
 
         // search bar
@@ -52,6 +51,7 @@ class _DrugListState extends State<DrugList> {
             padding:
                 const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
             child: TextField(
+              autocorrect: true,
               controller: _nameController,
               decoration: const InputDecoration(
                 border: InputBorder.none,
@@ -86,10 +86,10 @@ class DrugTile extends StatefulWidget {
   final AppDrugData drug;
 
   @override
-  _DrugTileState createState() => _DrugTileState();
+  DrugTileState createState() => DrugTileState();
 }
 
-class _DrugTileState extends State<DrugTile> {
+class DrugTileState extends State<DrugTile> {
   final user = FirebaseAuth.instance.currentUser;
   late bool isFavorite;
 

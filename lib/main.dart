@@ -5,10 +5,10 @@ import 'package:caducee/screens/splashscreen_wrapper.dart';
 import 'package:caducee/services/authentication.dart';
 import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
-// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     return MultiProvider(
       providers: [
         StreamProvider<AppUser?>.value(
@@ -38,11 +39,15 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Caducée',
-        // routes: {
-        //   '/allDrugs': (context) => allDrugs(),
-        // },
         debugShowCheckedModeBanner: false,
         home: const SplashScreenWrapper(),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('fr', 'FR'),
+        ],
         theme: ThemeData(
           fontFamily: 'Poppins',
         ),

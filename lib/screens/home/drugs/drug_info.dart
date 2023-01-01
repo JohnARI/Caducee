@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, unnecessary_null_comparison
-
 import 'package:caducee/common/const.dart';
 import 'package:caducee/models/drug.dart';
 import 'package:flutter/material.dart';
@@ -10,27 +8,20 @@ class DrugInfoPage extends StatefulWidget {
   const DrugInfoPage({Key? key, required this.drug}) : super(key: key);
 
   @override
-  _DrugInfoPageState createState() => _DrugInfoPageState();
+  DrugInfoPageState createState() => DrugInfoPageState();
 }
 
-class _DrugInfoPageState extends State<DrugInfoPage> {
+class DrugInfoPageState extends State<DrugInfoPage> {
   @override
   Widget build(BuildContext context) {
-    if (widget.drug == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text('Aucun médicament trouvé'),
-        ),
-      );
-    } else {
+
       return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             icon: const Icon(Icons.arrow_back, color: myGreen, size: 30.0),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: myTransparent,
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -83,6 +74,7 @@ class _DrugInfoPageState extends State<DrugInfoPage> {
                       border: Border(
                           bottom: BorderSide(color: myDarkGreen, width: 2.0))),
                   child: ExpansionTile(
+                    iconColor: myDarkGreen,
                     childrenPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     initiallyExpanded: true,
@@ -105,6 +97,7 @@ class _DrugInfoPageState extends State<DrugInfoPage> {
                         border: Border(
                             bottom: BorderSide(color: myDarkGreen, width: 2.0))),
                     child: ExpansionTile(
+                      iconColor: myDarkGreen,
                       childrenPadding:
                           const EdgeInsets.symmetric(horizontal: 20.0),
                       tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -141,6 +134,7 @@ class _DrugInfoPageState extends State<DrugInfoPage> {
                         border: Border(
                             bottom: BorderSide(color: myDarkGreen, width: 2.0))),
                     child: ExpansionTile(
+                      iconColor: myDarkGreen,
                       childrenPadding:
                           const EdgeInsets.symmetric(horizontal: 20.0),
                       tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -173,4 +167,3 @@ class _DrugInfoPageState extends State<DrugInfoPage> {
       );
     }
   }
-}

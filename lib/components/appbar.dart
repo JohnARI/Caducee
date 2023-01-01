@@ -34,6 +34,8 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
             child: Row(
               children: [
                 InkWell(
+                  highlightColor: myTransparent,
+                  splashColor: myTransparent,
                   onTap: () => _scaffoldKey.currentState!.openDrawer(),
                   child: const Icon(
                     Icons.menu,
@@ -76,9 +78,15 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
                 labelStyle:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 tabs: const [
-                  Tab(
-                    text: 'Médicaments',
+                  InkWell(
+                    splashColor: myTransparent,
+                    highlightColor: myTransparent,
+                    autofocus: true,
+                    child: Tab(
+                      text: 'Médicaments',
+                    ),
                   ),
+                 
                   Tab(
                     text: 'Catégories',
                   ),

@@ -1,4 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api
 import 'package:caducee/common/const.dart';
 import 'package:caducee/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -48,7 +47,7 @@ class _FavoriteListState extends State<FavoriteList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: myTransparent,
         elevation: 0.0,
 
         // search bar
@@ -57,6 +56,7 @@ class _FavoriteListState extends State<FavoriteList> {
             padding:
                 const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
             child: TextField(
+              autocorrect: true,
               controller: _nameController,
               decoration: const InputDecoration(
                 border: InputBorder.none,
@@ -91,10 +91,10 @@ class FavoriteListTile extends StatefulWidget {
   final AppDrugData drug;
 
   @override
-  _FavoriteListTileState createState() => _FavoriteListTileState();
+  FavoriteListTileState createState() => FavoriteListTileState();
 }
 
-class _FavoriteListTileState extends State<FavoriteListTile> {
+class FavoriteListTileState extends State<FavoriteListTile> {
   final user = FirebaseAuth.instance.currentUser;
   late bool isFavorite;
 
@@ -108,7 +108,11 @@ class _FavoriteListTileState extends State<FavoriteListTile> {
 
   void toggleFavorite() {
     setState(() {
-      isFavorite = !isFavorite;
+      if (isFavorite) {
+        removeFromFavorites(widget.drug);
+      } else {
+        addToFavorites(widget.drug);
+      }
     });
   }
 

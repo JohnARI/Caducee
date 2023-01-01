@@ -1,4 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
 import 'package:caducee/common/const.dart';
 import 'package:caducee/models/drug.dart';
 import 'package:caducee/services/database.dart';
@@ -27,7 +26,7 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
     if (filteredDrugs.isEmpty) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: myTransparent,
           elevation: 0.0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20.0),
@@ -44,6 +43,7 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 20.0),
               child: TextField(
+                autocorrect: true,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   suffixIcon: Icon(
@@ -70,7 +70,7 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: myTransparent,
           elevation: 0.0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20.0),
@@ -87,6 +87,7 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 20.0),
               child: TextField(
+                autocorrect: true,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   suffixIcon: Icon(
@@ -145,10 +146,10 @@ class DrugTile extends StatefulWidget {
   final AppDrugData drug;
 
   @override
-  _DrugTileState createState() => _DrugTileState();
+  DrugTileState createState() => DrugTileState();
 }
 
-class _DrugTileState extends State<DrugTile> {
+class DrugTileState extends State<DrugTile> {
   final user = FirebaseAuth.instance.currentUser;
   late bool isFavorite;
 
