@@ -77,8 +77,8 @@ class DatabaseService {
     }).toList();
   }
 
-  Future<void> saveDrug(String name, List<String> brand, String shortDesc, String longDesc, List<String> dosage, String category, String recommendation, String usage, List<String> favorite) async {
-    return await drugCollection.doc(name).set({
+  Future<void> saveDrug(String uid, String name, List<String> brand, String shortDesc, String longDesc, List<String> dosage, String category, String recommendation, String usage, List<String> favorite) async {
+    return await drugCollection.doc(uid).set({
       'name': name,
       'brand': brand,
       'shortDesc': shortDesc,

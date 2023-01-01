@@ -2,6 +2,7 @@ import 'package:caducee/common/const.dart';
 import 'package:caducee/components/navigation_drawer.dart';
 import 'package:caducee/screens/home/drugs/category_list.dart';
 import 'package:caducee/screens/home/drugs/favorite_drug.dart';
+import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:caducee/screens/home/drugs/drug_list.dart';
 
@@ -18,7 +19,6 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
-
     return Scaffold(
       key: _scaffoldKey,
       drawer: const NavigationDrawerWidget(),

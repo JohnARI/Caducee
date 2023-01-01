@@ -47,10 +47,6 @@ class _FavoriteListState extends State<FavoriteList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: myTransparent,
-        elevation: 0.0,
-
-        // search bar
         title: SizedBox(
           child: Padding(
             padding:

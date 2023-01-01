@@ -21,9 +21,6 @@ dependencies:
   provider: ^6.0.5
   flutter_launcher_icons: ^0.11.0
   flutter_lints: ^2.0.1
-  flutter_localization: ^0.1.9
-  flutter_localizations:
-    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -32,10 +29,8 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/icon.png"
-  adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/images/icon.png"
-
+n  adaptive_icon_background: "#FFFFFF"
+n
 flutter:
   uses-material-design: true
   assets:

@@ -21,8 +21,6 @@ class DrugInfoPageState extends State<DrugInfoPage> {
             icon: const Icon(Icons.arrow_back, color: myGreen, size: 30.0),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          backgroundColor: myTransparent,
-          elevation: 0.0,
         ),
         body: SingleChildScrollView(
           child: Padding(

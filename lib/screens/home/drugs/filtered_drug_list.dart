@@ -26,8 +26,6 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
     if (filteredDrugs.isEmpty) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: myTransparent,
-          elevation: 0.0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20.0),
             child: IconButton(
@@ -70,8 +68,6 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: myTransparent,
-          elevation: 0.0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20.0),
             child: IconButton(

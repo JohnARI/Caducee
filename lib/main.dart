@@ -7,7 +7,6 @@ import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 
 void main() async {
@@ -44,7 +43,12 @@ class MyApp extends StatelessWidget {
           home: const SplashScreenWrapper(),
           theme: ThemeData(
             fontFamily: 'Poppins',
-    
+            brightness: Brightness.light,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              systemOverlayStyle: SystemUiOverlayStyle.dark,
+            )
           ),
         ),
       ),
