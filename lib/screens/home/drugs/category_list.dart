@@ -41,30 +41,12 @@ class _CategoryListState extends State<CategoryList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-          child: Padding(
-            padding:
-                const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
-            child: TextField(
-              autocorrect: false,
-              controller: _nameController,
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                suffixIcon: Icon(
-                  Icons.search,
-                  color: myGreen,
-                  size: 30,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: myGreen),
-                ),
-              ),
-              onChanged: (val) {
-                _filterCategories(val);
-              },
-            ),
-          ),
-        ),
+        title: tabSearchBar((val) {
+            setState(() {
+              _filterCategories(val);
+            });
+          }, _nameController, "Rechercher une catégorie"),
+
       ),
       body: ListView.builder(
         itemCount: _filteredCategories.length,
@@ -83,7 +65,7 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+      margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [

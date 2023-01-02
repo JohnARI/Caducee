@@ -4,7 +4,6 @@ import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:caducee/screens/home/drugs/drug_info.dart';
 
 class FilteredDrugList extends StatefulWidget {
   final String categoryName;
@@ -26,6 +25,52 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
     if (filteredDrugs.isEmpty) {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: myTransparent,
+          elevation: 0.0,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back, color: myGreen, size: 30.0),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+
+          // search bar
+          title: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30.0, left: 20.0),
+              child: TextField(
+                autocorrect: false,
+                decoration: const InputDecoration(
+                border: InputBorder.none,
+                suffixIcon: Icon(
+                  Icons.search,
+                  color: myGreen,
+                  size: 30,
+                ),
+              ),
+                onChanged: (val) {
+                  setState(() {
+                    name = val.toLowerCase();
+                  });
+                },
+              ),
+            ),
+          ),
+        ),
+        body: const Center(
+          child: Text(
+              'Il n\'y a pas de médicament dans cette catégorie pour le moment'),
+        ),
+      );
+    }
+
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: myTransparent,
+          elevation: 0.0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20.0),
             child: IconButton(
@@ -49,47 +94,8 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
                     color: myGreen,
                     size: 30,
                   ),
-                ),
-                onChanged: (val) {
-                  setState(() {
-                    name = val;
-                  });
-                },
-              ),
-            ),
-          ),
-        ),
-        body: const Center(
-          child: Text(
-              'Il n\'y a pas de médicament dans cette catégorie pour le moment'),
-        ),
-      );
-    }
-
-    return Scaffold(
-        appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: myGreen, size: 30.0),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-
-          // search bar
-          title: SizedBox(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 30.0, left: 20.0),
-              child: TextField(
-                autocorrect: false,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: Icon(
-                    Icons.search,
-                    color: myGreen,
-                    size: 30,
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: myGreen),
                   ),
                 ),
                 onChanged: (val) {
@@ -171,74 +177,6 @@ class DrugTileState extends State<DrugTile> {
 
   @override
   Widget build(BuildContext context) {
-    final Icon bookmarkIcon = isFavorite
-        ? const Icon(
-            Icons.bookmark,
-            color: myGreen,
-            size: 30,
-          )
-        : const Icon(
-            Icons.bookmark_border,
-            color: myGreen,
-            size: 30,
-          );
-    return Container(
-        margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            myBoxShadow,
-            myBoxShadow2,
-          ],
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DrugInfoPage(drug: widget.drug),
-              ),
-            );
-          },
-          child: ListTile(
-            leading: const SizedBox(
-              width: 48.0,
-              height: 48.0,
-              child: Center(
-                child: Image(
-                  image: AssetImage('assets/images/iconLogo.png'),
-                  height: 40.0,
-                  width: 40.0,
-                ),
-              ),
-            ),
-            title: Text(
-              widget.drug.name,
-              style: const TextStyle(
-                fontSize: 16.0,
-                color: Colors.black,
-              ),
-            ),
-            subtitle: Text(
-              widget.drug.shortDesc,
-              style: const TextStyle(
-                fontSize: 12.0,
-                color: Colors.black,
-              ),
-            ),
-            trailing: IconButton(
-              icon: bookmarkIcon,
-              onPressed: () {
-                if (isFavorite) {
-                  removeFromFavorites(widget.drug);
-                } else {
-                  addToFavorites(widget.drug);
-                }
-                toggleFavorite();
-              },
-            ),
-          ),
-        ));
+    return drugTile(context, widget.drug, isFavorite, toggleFavorite, addToFavorites, removeFromFavorites);
   }
 }

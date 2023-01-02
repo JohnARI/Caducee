@@ -65,9 +65,9 @@ class DatabaseService {
     return snapshot.docs.map((doc) {
       return AppDrugData(
         name: (doc.data() as Map<String, dynamic>)['name'],
-        brand: (doc.data() as Map<String, dynamic>)['brand'].cast<String>(),
-        shortDesc: (doc.data() as Map<String, dynamic>)['shortDesc'],
-        longDesc: (doc.data() as Map<String, dynamic>)['longDesc'],
+        molecule: (doc.data() as Map<String, dynamic>)['molecule'],
+        description: (doc.data() as Map<String, dynamic>)['description'],
+        form: (doc.data() as Map<String, dynamic>)['form'].cast<String>(),
         dosage: (doc.data() as Map<String, dynamic>)['dosage'].cast<String>(),
         category: (doc.data() as Map<String, dynamic>)['category'],
         recommendation: (doc.data() as Map<String, dynamic>)['recommendation'],
@@ -77,12 +77,12 @@ class DatabaseService {
     }).toList();
   }
 
-  Future<void> saveDrug(String uid, String name, List<String> brand, String shortDesc, String longDesc, List<String> dosage, String category, String recommendation, String usage, List<String> favorite) async {
+  Future<void> saveDrug(String uid, String name, String molecule, String description,List<String> form, List<String> dosage, String category, String recommendation, String usage, List<String> favorite) async {
     return await drugCollection.doc(uid).set({
       'name': name,
-      'brand': brand,
-      'shortDesc': shortDesc,
-      'longDesc': longDesc,
+      'molecule': molecule,
+      'description': description,
+      'form': form,
       'dosage': dosage,
       'category': category,
       'recommendation': recommendation,

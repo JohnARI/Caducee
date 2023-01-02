@@ -1,8 +1,8 @@
 class AppDrugData {
   final String name;
-  final List<String> brand;
-  final String shortDesc;
-  final String longDesc;
+  final String molecule;
+  final String description;
+  final List<String> form;
   final List<String> dosage;
   final String category;
   final String recommendation;
@@ -10,9 +10,9 @@ class AppDrugData {
   final List<String> favorite;
   AppDrugData(
       {required this.name,
-      required this.shortDesc,
-      required this.longDesc,
-      required this.brand,
+      required this.description,
+      required this.molecule,
+      required this.form,
       required this.dosage,
       required this.recommendation,
       required this.usage,
