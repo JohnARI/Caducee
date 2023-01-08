@@ -57,6 +57,9 @@ SizedBox tabSearchBar(
             color: myGreen,
             size: 30,
           ),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black26),
+          ),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: myGreen),
           ),
