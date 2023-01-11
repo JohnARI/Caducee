@@ -24,35 +24,33 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[_page],
-      bottomNavigationBar: SafeArea(
-        child: CurvedNavigationBar(
-          onTap: (index) {
-            setState(() {
-              _page = index;
-            });
-          },
-          backgroundColor: myTransparent,
-          color: myDarkGreen,
-          buttonBackgroundColor: myPastelGreen,
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 300),
-          height: 60,
-          index: _page,
-          items: const [
-            Icon(
-              Icons.medical_services_outlined,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.home_outlined,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.person_outlined,
-              color: Colors.white,
-            ),
-          ],
-        ),
+      bottomNavigationBar: CurvedNavigationBar(
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
+        backgroundColor: myTransparent,
+        color: myDarkGreen,
+        buttonBackgroundColor: myPastelGreen,
+        animationCurve: Curves.easeInOut,
+        animationDuration: const Duration(milliseconds: 300),
+        height: 60,
+        index: _page,
+        items: const [
+          Icon(
+            Icons.medical_services_outlined,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.home_outlined,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.person_outlined,
+            color: Colors.white,
+          ),
+        ],
       ),
     );
   }

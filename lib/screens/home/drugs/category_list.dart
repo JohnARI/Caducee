@@ -47,12 +47,19 @@ class _CategoryListState extends State<CategoryList> {
           });
         }, _nameController, "Rechercher une catégorie"),
       ),
-      body: ListView.builder(
-        itemCount: _filteredCategories.length,
-        itemBuilder: (context, index) {
-          return CategoryTile(category: _filteredCategories[index]);
-        },
-      ),
+      body: _filteredCategories.isEmpty
+          ? Center(
+              child: Image.asset(
+                "assets/images/no_categories.png",
+                height: 200,
+              ),
+            )
+          : ListView.separated(
+              separatorBuilder: (context, index) => Container(),
+              itemCount: _filteredCategories.length,
+              itemBuilder: (context, index) {
+                return CategoryTile(category: _filteredCategories[index]);
+              }),
     );
   }
 }

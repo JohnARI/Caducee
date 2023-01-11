@@ -42,18 +42,17 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
 
     // );
 
-    return Scaffold(
+return Scaffold(
       key: _scaffoldKey,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 45,
+          SafeArea(
+            child: Container(
+                padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+                height: 70,
+                child: Image.asset('assets/images/textLogo.png')),
           ),
-          Container(
-              padding: const EdgeInsets.only(left: 20.0),
-              height: 50,
-              child: Image.asset('assets/images/textLogo.png')),
           const SizedBox(
             height: 10,
           ),
@@ -84,11 +83,10 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
                   ),
                 ]),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: SizedBox(
-              width: double.maxFinite,
-              height: MediaQuery.of(context).size.height - 223,
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10.0),
               child: TabBarView(
                 controller: tabController,
                 children: const [
@@ -102,6 +100,7 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
         ],
       ),
     );
+
   }
 }
 

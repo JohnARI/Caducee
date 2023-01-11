@@ -60,9 +60,8 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
             ),
           ),
         ),
-        body: const Center(
-          child: Text(
-              'Il n\'y a pas de médicament dans cette catégorie pour le moment'),
+        body: Center(
+          child: Image.asset("assets/images/no_drugs_in_categories.png", height: 200),
         ),
       );
     }

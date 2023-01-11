@@ -54,12 +54,16 @@ class _FavoriteListState extends State<FavoriteList> {
         _nameController, "Rechercher un médicament"
         ),
       ),
-      body: ListView.builder(
+      body: _favorites.isEmpty
+    ? Center(child: Image.asset("assets/images/no_favorites.gif", height: 200,))
+    : ListView.separated(
+        separatorBuilder: (context, index) => Container(),
         itemCount: _favorites.length,
         itemBuilder: (context, index) {
           return FavoriteListTile(drug: _favorites[index]);
         },
       ),
+
     );
   }
 }
