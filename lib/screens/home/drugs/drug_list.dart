@@ -14,7 +14,6 @@ class DrugList extends StatefulWidget {
 
 class _DrugListState extends State<DrugList> {
   final _nameController = TextEditingController();
-  bool loading = false;
 
   List<AppDrugData> _filteredDrugs = [];
 

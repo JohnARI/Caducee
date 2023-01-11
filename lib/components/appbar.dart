@@ -1,8 +1,6 @@
 import 'package:caducee/common/const.dart';
 import 'package:caducee/screens/home/drugs/category_list.dart';
 import 'package:caducee/screens/home/drugs/favorite_drug.dart';
-import 'package:caducee/screens/profil.dart';
-import 'package:caducee/screens/symptoms.dart';
 import 'package:flutter/material.dart';
 import 'package:caducee/screens/home/drugs/drug_list.dart';
 
@@ -15,12 +13,6 @@ class MyAppBar extends StatefulWidget {
 
 class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final screens = [
-    const MyProfil(),
-    const MyAppBar(),
-    const Symptoms(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +44,6 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
 
     return Scaffold(
       key: _scaffoldKey,
-      extendBody: true,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,9 +72,6 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 tabs: const [
                   InkWell(
-                    splashColor: myTransparent,
-                    highlightColor: myTransparent,
-                    autofocus: true,
                     child: Tab(
                       text: 'Médicaments',
                     ),
@@ -100,7 +88,7 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
             padding: const EdgeInsets.only(top: 10.0),
             child: SizedBox(
               width: double.maxFinite,
-              height: MediaQuery.of(context).size.height - 163,
+              height: MediaQuery.of(context).size.height - 223,
               child: TabBarView(
                 controller: tabController,
                 children: const [
