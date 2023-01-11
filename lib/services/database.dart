@@ -117,7 +117,6 @@ class DatabaseService {
     return drugCollection.where('favorite', arrayContains: uid).snapshots().map(_drugListFromSnapshot);
   }
 
-
   Stream<List<Category>> get categories {
     return _db.collection('categories').snapshots().map(_categoryListFromSnapshot);
   }
@@ -137,6 +136,5 @@ class DatabaseService {
       'description': description,
     });
   }
-
 
 }

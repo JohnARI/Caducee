@@ -42,11 +42,10 @@ class _CategoryListState extends State<CategoryList> {
     return Scaffold(
       appBar: AppBar(
         title: tabSearchBar((val) {
-            setState(() {
-              _filterCategories(val);
-            });
-          }, _nameController, "Rechercher une catégorie"),
-
+          setState(() {
+            _filterCategories(val);
+          });
+        }, _nameController, "Rechercher une catégorie"),
       ),
       body: ListView.builder(
         itemCount: _filteredCategories.length,
@@ -65,7 +64,8 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
+      margin: const EdgeInsets.only(
+          left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -119,14 +119,27 @@ class CategoryTile extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: 5.0,
-              margin:
-                  const EdgeInsets.only(left: 150.0, right: 150.0, bottom: 8.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: myGreen,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 7.0, right: 3.0),
+                  child: Text(
+                    "Voir les médicaments",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.black26,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 16.0, bottom: 8.0),
+                  child: Icon(
+                    Icons.arrow_forward_rounded,
+                    color: myGreen,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

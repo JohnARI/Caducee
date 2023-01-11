@@ -1,8 +1,8 @@
 import 'package:caducee/common/const.dart';
-import 'package:caducee/components/navigation_drawer.dart';
 import 'package:caducee/screens/home/drugs/category_list.dart';
 import 'package:caducee/screens/home/drugs/favorite_drug.dart';
-import 'package:caducee/services/database.dart';
+import 'package:caducee/screens/profil.dart';
+import 'package:caducee/screens/symptoms.dart';
 import 'package:flutter/material.dart';
 import 'package:caducee/screens/home/drugs/drug_list.dart';
 
@@ -16,47 +16,48 @@ class MyAppBar extends StatefulWidget {
 class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final screens = [
+    const MyProfil(),
+    const MyAppBar(),
+    const Symptoms(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
 
+    // DatabaseService(uid: '').saveDrug(
+    //   /* uid */
+    //   "",
+    //   /* name */
+    //   "",
+    //   /* molecule */
+    //   "",
+    //   /* description */
+    //   "",
+    //   /* form */
+    //   [""],
+    //   /* dosage */
+    //   ["Adulte: ", "Enfant(-50kg): "],
+    //   /* category */
+    //   "",
+    //   /* recommendation */
+    //   "",
+    //   /* usage */
+    //   "",
+    //   /* favorite */
+    //   [],
+
+    // );
+
     return Scaffold(
       key: _scaffoldKey,
-      drawer: const NavigationDrawerWidget(),
+      extendBody: true,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 50,
-              right: 20,
-            ),
-            child: Row(
-              children: [
-                InkWell(
-                  highlightColor: myTransparent,
-                  splashColor: myTransparent,
-                  onTap: () => _scaffoldKey.currentState!.openDrawer(),
-                  child: const Icon(
-                    Icons.menu,
-                    color: myGreen,
-                    size: 30,
-                  ),
-                ),
-                Expanded(child: Container()),
-                const SizedBox(
-                  child: Icon(
-                    Icons.school_outlined,
-                    color: myGreen,
-                    size: 30,
-                  ),
-                ),
-              ],
-            ),
-          ),
           const SizedBox(
-            height: 30,
+            height: 45,
           ),
           Container(
               padding: const EdgeInsets.only(left: 20.0),
@@ -99,7 +100,7 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
             padding: const EdgeInsets.only(top: 10.0),
             child: SizedBox(
               width: double.maxFinite,
-              height: 620,
+              height: MediaQuery.of(context).size.height - 163,
               child: TabBarView(
                 controller: tabController,
                 children: const [

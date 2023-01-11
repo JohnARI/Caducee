@@ -22,7 +22,7 @@ const textInputDecoration = InputDecoration(
 final textColor = TextStyle(color: Colors.grey[700]);
 
 const myDarkGreen = Color(0xFF1B8C5C);
-const myPastelGreen = Color(0xFF315c4e);
+const myPastelGreen = Color(0xFF315C4E);
 const myGreen = Color(0xFF23cc8c);
 const myLightGreen = Color(0xFF80e4c4);
 const myTransparent = Colors.transparent;

@@ -48,18 +48,21 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                       fontWeight: FontWeight.bold)),
               Text(widget.drug.molecule,
                   style: const TextStyle(
-                      color: myDarkGreen,
-                      fontWeight: FontWeight.w500)),
+                      color: myDarkGreen, fontWeight: FontWeight.w500)),
               const SizedBox(height: 10.0),
               Row(
                 children: <Widget>[
                   const Icon(Icons.warning_amber_rounded, color: Colors.red),
                   const SizedBox(width: 10.0),
-                  Text(widget.drug.recommendation,
-                      style: const TextStyle(
-                        color: Colors.red,
-                        fontStyle: FontStyle.italic,
-                      )),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(widget.drug.recommendation,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontStyle: FontStyle.italic,
+                          )),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 16.0),
@@ -83,7 +86,6 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                   iconColor: myDarkGreen,
                   childrenPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                   tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
-
                   initiallyExpanded: true,
                   title: const Text('Description',
                       style: TextStyle(
@@ -100,45 +102,43 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                 ),
               ),
               Container(
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom:
-                                BorderSide(color: myDarkGreen, width: 2.0))),
-                    child: ExpansionTile(
-                      iconColor: myDarkGreen,
-                      childrenPadding:
-                          const EdgeInsets.symmetric(horizontal: 20.0),
-                      tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      title: widget.drug.form.length > 1
-                          ? const Text('Formes',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold))
-                          : const Text('Forme',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold)),
-                      children: <Widget>[
-                        ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: widget.drug.form.length,
-                          itemBuilder: (context, index) {
-                            final isLast =
-                                index == widget.drug.form.length - 1;
-                            return Padding(
-                              padding: isLast
-                                  ? const EdgeInsets.only(bottom: 16.0)
-                                  : const EdgeInsets.only(bottom: 4.0),
-                              child: Text('-${widget.drug.form[index]}',
-                                  style: Theme.of(context).textTheme.bodyText2),
-                            );
-                          },
-                        ),
-                      ],
-                    )),
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(color: myDarkGreen, width: 2.0))),
+                  child: ExpansionTile(
+                    iconColor: myDarkGreen,
+                    childrenPadding:
+                        const EdgeInsets.symmetric(horizontal: 20.0),
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    title: widget.drug.form.length > 1
+                        ? const Text('Formes',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold))
+                        : const Text('Forme',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                    children: <Widget>[
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: widget.drug.form.length,
+                        itemBuilder: (context, index) {
+                          final isLast = index == widget.drug.form.length - 1;
+                          return Padding(
+                            padding: isLast
+                                ? const EdgeInsets.only(bottom: 16.0)
+                                : const EdgeInsets.only(bottom: 4.0),
+                            child: Text('-${widget.drug.form[index]}',
+                                style: Theme.of(context).textTheme.bodyText2),
+                          );
+                        },
+                      ),
+                    ],
+                  )),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: Container(
