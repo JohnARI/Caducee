@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 25.0),
                                 child: TextFormField(
+                                  autocorrect: false,
                                   style: textColor,
                                   controller: nameController,
                                   decoration: textInputDecoration.copyWith(
@@ -123,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: TextFormField(
+                            autocorrect: false,
                             style: textColor,
                             controller: emailController,
                             decoration: textInputDecoration.copyWith(
@@ -146,6 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: TextFormField(
+                            autocorrect: false,
                             style: textColor,
                             controller: passwordController,
                             decoration: textInputDecoration.copyWith(

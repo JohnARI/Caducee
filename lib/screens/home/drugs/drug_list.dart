@@ -48,14 +48,23 @@ class _DrugListState extends State<DrugList> {
           });
         }, _nameController, "Rechercher un médicament"),
       ),
-      body: _filteredDrugs.isEmpty
+      body: _filteredDrugs.isEmpty && _nameController.text.length >= 2
           ? Center(
               child: Image.asset(
-                "assets/images/no_drugs.png",
+                Theme.of(context).brightness == Brightness.dark
+                    ? "assets/images/no_drugs_dark.png"
+                    : "assets/images/no_drugs_light.png",
                 height: 200,
               ),
             )
-          : ListView.separated(
+          : _filteredDrugs.isEmpty && _nameController.text.isEmpty
+            ? Center(
+                child: Image.asset(
+                  "assets/images/loader.gif",
+                  height: 150,
+                ),
+            )
+            : ListView.separated(
               separatorBuilder: (context, index) => Container(),
               itemCount: _filteredDrugs.length,
               itemBuilder: (context, index) {

@@ -27,18 +27,16 @@ const myGreen = Color(0xFF23cc8c);
 const myLightGreen = Color(0xFF80e4c4);
 const myTransparent = Colors.transparent;
 
-BoxShadow myBoxShadow = BoxShadow(
-  color: Colors.grey.shade500,
-  blurRadius: 15.0,
-  spreadRadius: 1.0,
-  offset: const Offset(6.0, 6.0),
+BoxShadow myBoxShadow = const BoxShadow(
+  color: Colors.white12,
+  offset: Offset(-6, -6),
+  blurRadius: 20,
 );
 
 BoxShadow myBoxShadow2 = const BoxShadow(
-  color: Colors.white,
-  blurRadius: 15.0,
-  spreadRadius: 1.0,
-  offset: Offset(-6.0, -6.0),
+  color: Colors.black26,
+  offset: Offset(6, 6),
+  blurRadius: 20,
 );
 
 SizedBox tabSearchBar(
@@ -81,9 +79,13 @@ Container drugTile(
     margin:
         const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0, top: 8.0),
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       boxShadow: [
-        myBoxShadow,
+        BoxShadow(
+          color: Theme.of(context).shadowColor,
+          offset: const Offset(-6, -6),
+          blurRadius: 20,
+        ),
         myBoxShadow2,
       ],
       borderRadius: BorderRadius.circular(12.0),
@@ -111,20 +113,16 @@ Container drugTile(
         ),
         title: Text(
           drug.name,
-          style: const TextStyle(
-            fontSize: 16.0,
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-          ),
+          style: Theme.of(context).textTheme.bodyText1!.copyWith( // bodyText1 is black
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+              ),
         ),
-        subtitle:
-            Text(
-          drug.molecule,
-          style: const TextStyle(
-            fontSize: 14.0,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
+        subtitle: Text(drug.molecule,
+            style: Theme.of(context).textTheme.bodyText2!.copyWith( // bodyText2 is grey (blacl54)
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w400,
+                )),
         trailing: IconButton(
           icon: bookmarkIcon(isFavorite),
           onPressed: () {

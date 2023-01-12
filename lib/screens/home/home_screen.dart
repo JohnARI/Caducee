@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:caducee/common/const.dart';
 import 'package:caducee/components/appbar.dart';
 import 'package:caducee/screens/profil.dart';
@@ -19,6 +20,28 @@ class HomeScreenState extends State<HomeScreen> {
     const MyAppBar(),
     const MyProfil(),
   ];
+
+  bool darkMode = false;
+  dynamic savedThemeMode;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentTheme();
+  }
+
+  Future getCurrentTheme() async {
+    savedThemeMode = await AdaptiveTheme.getThemeMode();
+    if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
+      setState(() {
+        darkMode = true;
+      });
+    } else {
+      setState(() {
+        darkMode = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ class DrugInfoPageState extends State<DrugInfoPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: myGreen, size: 30.0),
+          icon: const Icon(Icons.arrow_back, color: myDarkGreen, size: 30.0),
           onPressed: () => Navigator.of(context).pop(),
         ),
         centerTitle: true,
@@ -34,11 +34,11 @@ class DrugInfoPageState extends State<DrugInfoPage> {
             children: <Widget>[
               const SizedBox(height: 10.0),
               Text(widget.drug.category,
-                  style: const TextStyle(
-                      color: Colors.black,
+                  style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.italic,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
                       letterSpacing: 2.0)),
               const SizedBox(height: 16.0),
               Text(widget.drug.name,
@@ -66,17 +66,12 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                 ],
               ),
               const SizedBox(height: 16.0),
-              const Text('Utilisation:',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
+              Text('Utilisation:',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyText1!.color)),
               const SizedBox(height: 10.0),
               Text(widget.drug.usage,
                   style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400)),
+                      fontSize: 16, fontWeight: FontWeight.w400)),
               const SizedBox(height: 20.0),
               Container(
                 decoration: const BoxDecoration(
@@ -87,11 +82,10 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                   childrenPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                   tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
                   initiallyExpanded: true,
+                  textColor: Theme.of(context).textTheme.bodyText1!.color,
                   title: const Text('Description',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -110,17 +104,14 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                     childrenPadding:
                         const EdgeInsets.symmetric(horizontal: 20.0),
                     tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    textColor: Theme.of(context).textTheme.bodyText1!.color,
                     title: widget.drug.form.length > 1
                         ? const Text('Formes',
                             style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold))
+                                fontSize: 20, fontWeight: FontWeight.bold))
                         : const Text('Forme',
                             style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
+                                fontSize: 20, fontWeight: FontWeight.bold)),
                     children: <Widget>[
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -151,11 +142,10 @@ class DrugInfoPageState extends State<DrugInfoPage> {
                       childrenPadding:
                           const EdgeInsets.symmetric(horizontal: 20.0),
                       tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      textColor: Theme.of(context).textTheme.bodyText1!.color,
                       title: const Text('Posologie',
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold)),
+                              fontSize: 20, fontWeight: FontWeight.bold)),
                       children: <Widget>[
                         ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),

@@ -43,6 +43,7 @@ class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
     // );
 
 return Scaffold(
+      backgroundColor: myTransparent,
       key: _scaffoldKey,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,8 +63,8 @@ return Scaffold(
                 controller: tabController,
                 isScrollable: true,
                 labelPadding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.black54,
+                labelColor: Theme.of(context).textTheme.bodyText1!.color,
+                unselectedLabelColor: Theme.of(context).textTheme.bodyText2!.color,
                 indicator:
                     const CircleTabIndicator(color: myDarkGreen, radius: 3),
                 unselectedLabelStyle: const TextStyle(fontSize: 16),
@@ -85,8 +86,6 @@ return Scaffold(
           ),
           Expanded(
             flex: 3,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10.0),
               child: TabBarView(
                 controller: tabController,
                 children: const [
@@ -95,7 +94,6 @@ return Scaffold(
                   FavoriteList(),
                 ],
               ),
-            ),
           ),
         ],
       ),

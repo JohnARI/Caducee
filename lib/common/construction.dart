@@ -5,11 +5,10 @@ class UnderConstruction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Center(
-        child: Image.asset('assets/images/construction.gif', width: 300, height: 300),
-      ),
+    return Center(
+      child: Theme.of(context).brightness == Brightness.dark
+          ? Image.asset('assets/images/construction_dark.gif', width: 300, height: 300)
+          : Image.asset('assets/images/construction_light.gif', width: 300, height: 300),
     );
   }
 }

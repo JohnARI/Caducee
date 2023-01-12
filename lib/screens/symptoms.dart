@@ -15,7 +15,6 @@ class _SymptomsState extends State<Symptoms> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Symptômes", style: TextStyle(color: myGreen)),
-        backgroundColor: Colors.white,
       ),
       body: const UnderConstruction(),
     );

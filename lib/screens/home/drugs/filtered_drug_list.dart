@@ -44,13 +44,13 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
               child: TextField(
                 autocorrect: false,
                 decoration: const InputDecoration(
-                border: InputBorder.none,
-                suffixIcon: Icon(
-                  Icons.search,
-                  color: myGreen,
-                  size: 30,
+                  border: InputBorder.none,
+                  suffixIcon: Icon(
+                    Icons.search,
+                    color: myGreen,
+                    size: 30,
+                  ),
                 ),
-              ),
                 onChanged: (val) {
                   setState(() {
                     name = val.toLowerCase();
@@ -61,7 +61,11 @@ class _FilteredDrugListState extends State<FilteredDrugList> {
           ),
         ),
         body: Center(
-          child: Image.asset("assets/images/no_drugs_in_categories.png", height: 200),
+          child: Image.asset(
+            Theme.of(context).brightness == Brightness.dark
+                ? "assets/images/no_drugs_in_categories_dark.png"
+                : "assets/images/no_drugs_in_categories_light.png",
+              height: 200),
         ),
       );
     }
@@ -176,6 +180,7 @@ class DrugTileState extends State<DrugTile> {
 
   @override
   Widget build(BuildContext context) {
-    return drugTile(context, widget.drug, isFavorite, toggleFavorite, addToFavorites, removeFromFavorites);
+    return drugTile(context, widget.drug, isFavorite, toggleFavorite,
+        addToFavorites, removeFromFavorites);
   }
 }

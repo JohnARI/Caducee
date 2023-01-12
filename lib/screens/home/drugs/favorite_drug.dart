@@ -50,20 +50,23 @@ class _FavoriteListState extends State<FavoriteList> {
           setState(() {
             _favoriteDrugs(val);
           });
-        },
-        _nameController, "Rechercher un médicament"
-        ),
+        }, _nameController, "Rechercher un médicament"),
       ),
       body: _favorites.isEmpty
-    ? Center(child: Image.asset("assets/images/no_favorites.gif", height: 200,))
-    : ListView.separated(
-        separatorBuilder: (context, index) => Container(),
-        itemCount: _favorites.length,
-        itemBuilder: (context, index) {
-          return FavoriteListTile(drug: _favorites[index]);
-        },
-      ),
-
+          ? Center(
+              child: Image.asset(
+                Theme.of(context).brightness == Brightness.dark
+                    ? "assets/images/no_favorites_dark.gif"
+                    : "assets/images/no_favorites_light.gif",
+              height: 200,
+            ))
+          : ListView.separated(
+              separatorBuilder: (context, index) => Container(),
+              itemCount: _favorites.length,
+              itemBuilder: (context, index) {
+                return FavoriteListTile(drug: _favorites[index]);
+              },
+            ),
     );
   }
 }
@@ -106,6 +109,7 @@ class FavoriteListTileState extends State<FavoriteListTile> {
 
   @override
   Widget build(BuildContext context) {
-    return drugTile(context, widget.drug, isFavorite, toggleFavorite, addToFavorites, removeFromFavorites);
+    return drugTile(context, widget.drug, isFavorite, toggleFavorite,
+        addToFavorites, removeFromFavorites);
   }
 }

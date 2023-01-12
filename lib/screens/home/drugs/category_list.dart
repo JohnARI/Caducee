@@ -47,19 +47,28 @@ class _CategoryListState extends State<CategoryList> {
           });
         }, _nameController, "Rechercher une catégorie"),
       ),
-      body: _filteredCategories.isEmpty
+      body: _filteredCategories.isEmpty && _nameController.text.length >= 2
           ? Center(
               child: Image.asset(
-                "assets/images/no_categories.png",
+                Theme.of(context).brightness == Brightness.dark
+                    ? "assets/images/no_categories_dark.png"
+                    : "assets/images/no_categories_light.png",
                 height: 200,
               ),
             )
-          : ListView.separated(
-              separatorBuilder: (context, index) => Container(),
-              itemCount: _filteredCategories.length,
-              itemBuilder: (context, index) {
-                return CategoryTile(category: _filteredCategories[index]);
-              }),
+          : _filteredCategories.isEmpty && _nameController.text.isEmpty
+              ? Center(
+                  child: Image.asset(
+                    "assets/images/loader.gif",
+                    height: 150,
+                  ),
+                )
+              : ListView.separated(
+                  separatorBuilder: (context, index) => Container(),
+                  itemCount: _filteredCategories.length,
+                  itemBuilder: (context, index) {
+                    return CategoryTile(category: _filteredCategories[index]);
+                  }),
     );
   }
 }
@@ -74,9 +83,13 @@ class CategoryTile extends StatelessWidget {
       margin: const EdgeInsets.only(
           left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         boxShadow: [
-          myBoxShadow,
+          BoxShadow(
+            color: Theme.of(context).shadowColor,
+            offset: const Offset(-6, -6),
+            blurRadius: 20,
+          ),
           myBoxShadow2,
         ],
         borderRadius: BorderRadius.circular(12.0),
@@ -109,10 +122,10 @@ class CategoryTile extends StatelessWidget {
           title: ListTile(
             title: Text(
               category.name,
-              style: const TextStyle(
-                fontSize: 16.0,
-                color: Colors.black,
-              ),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
           ),
           children: [
@@ -121,8 +134,9 @@ class CategoryTile extends StatelessWidget {
                   const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
               child: Text(
                 category.description,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14.0,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
                 ),
               ),
             ),
@@ -135,7 +149,6 @@ class CategoryTile extends StatelessWidget {
                     "Voir les médicaments",
                     style: TextStyle(
                       fontSize: 12.0,
-                      color: Colors.black26,
                     ),
                   ),
                 ),

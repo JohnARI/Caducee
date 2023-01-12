@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:caducee/common/const.dart';
 import 'package:caducee/common/construction.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,17 +12,26 @@ class MyProfil extends StatefulWidget {
 }
 
 class _MyProfilState extends State<MyProfil> {
+
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil', style: TextStyle(color: myGreen)), 
-        backgroundColor: Colors.white,
         actions: [
-          const Padding(
-            padding: EdgeInsets.only(top: 17.0),
-            child: Text('Déconnexion', style: TextStyle(color: Colors.black26)),
-          ),
+          IconButton(
+    icon: AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark
+        ? const Icon(Icons.dark_mode_outlined, color: myGreen)
+        : const Icon(Icons.light_mode_outlined, color: myGreen),
+    onPressed: () {
+        setState(() {
+            
+        });
+        AdaptiveTheme.of(context).mode == AdaptiveThemeMode.light
+            ? AdaptiveTheme.of(context).setDark()
+            : AdaptiveTheme.of(context).setLight();
+    },
+),
           IconButton(
             icon: const Icon(Icons.logout, color: myGreen),
             onPressed: () {
@@ -35,4 +45,5 @@ class _MyProfilState extends State<MyProfil> {
       body: const UnderConstruction(),
     );
   }
+
 }
