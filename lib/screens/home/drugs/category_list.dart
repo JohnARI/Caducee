@@ -53,7 +53,7 @@ class _CategoryListState extends State<CategoryList> {
                 Theme.of(context).brightness == Brightness.dark
                     ? "assets/images/no_categories_dark.png"
                     : "assets/images/no_categories_light.png",
-                height: 200,
+                height: 250,
               ),
             )
           : _filteredCategories.isEmpty && _nameController.text.isEmpty

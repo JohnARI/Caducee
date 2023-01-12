@@ -54,7 +54,7 @@ class _DrugListState extends State<DrugList> {
                 Theme.of(context).brightness == Brightness.dark
                     ? "assets/images/no_drugs_dark.png"
                     : "assets/images/no_drugs_light.png",
-                height: 200,
+                height: 250,
               ),
             )
           : _filteredDrugs.isEmpty && _nameController.text.isEmpty

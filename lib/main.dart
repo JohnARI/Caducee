@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
         ),
       ),
-      initial: AdaptiveThemeMode.dark,
+      initial: AdaptiveThemeMode.light,
     );
   }
 }

@@ -58,7 +58,7 @@ class _FavoriteListState extends State<FavoriteList> {
                 Theme.of(context).brightness == Brightness.dark
                     ? "assets/images/no_favorites_dark.gif"
                     : "assets/images/no_favorites_light.gif",
-              height: 200,
+              height: 250,
             ))
           : ListView.separated(
               separatorBuilder: (context, index) => Container(),
