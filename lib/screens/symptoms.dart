@@ -15,7 +15,7 @@ class Symptoms extends StatefulWidget {
 }
 
 Future<String> generateResponse(String prompt) async {
-  const apiKey = apiSecretKey;
+  final apiKey = apiSecretKey;
 
   var url = Uri.https("api.openai.com", "/v1/completions");
   final response = await http.post(
@@ -56,13 +56,13 @@ class _SymptomsState extends State<Symptoms> {
   String _selectedValue = "";
   final List<String> bouche = ["Aucun", "Douleur à la mâchoire", "maux de dents", "Saignements de gencives", "Aphtes", "Ulcères buccaux", "Langue enflée", "Mauvaise haleine"];
   final List<String> gorge = ["Toux sèche", "Douleur en avalant", "Enrouement", "Douleur cervicale", "Ganglions lymphatiques enflés"];
-  final List<String> vue = ["Aucun,"
+  final List<String> vue = ["Aucun",
     "Vision floue", "Double vision", "Maux de tête liés à la vue", "Yeux rouges", "Éblouissement", "Photophobie"
   ];
-  final List<String> oreilles = ["Aucun"
+  final List<String> oreilles = ["Aucun",
     "Acouphènes", "Bourdonnements d'oreille", "Perte d'audition", "Douleur à l'oreille", "Vertiges", "Équilibre Instable"
   ];
-  final List<String> nez = [ "Aucun"
+  final List<String> nez = [ "Aucun",
     "Nez qui coule", "Nez bouché", "Saignements de nez", "Perte d'odorat", "Démangeaisons de la narine"
   ];
   final List<String> tete = ["Aucun",
