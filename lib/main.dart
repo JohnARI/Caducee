@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AdaptiveTheme(
       light: ThemeData(
+        // primaryColor: myGreen,
         fontFamily: 'Poppins',
         brightness: Brightness.light,
         textTheme: const TextTheme(
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         ),
         cardColor: Colors.white,
         shadowColor: Colors.white12,
-        colorScheme: const ColorScheme.light(),
+        // colorScheme: const ColorScheme.light(),
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: myGreen,
           selectionColor: myGreen,
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       dark: ThemeData(
+        primaryColor: myGreen,
         fontFamily: 'Poppins',
         brightness: Brightness.dark,
         textTheme: const TextTheme(
@@ -58,12 +60,10 @@ class MyApp extends StatelessWidget {
             color: Colors.white54,
           ),
         ),
-        // convert #303030
         
         cardColor: const Color.fromARGB(255, 48, 48, 48),
-        primaryColor: Colors.grey[900],
         shadowColor: Colors.black26,
-        colorScheme: const ColorScheme.dark(),
+        // colorScheme: const ColorScheme.dark(),
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: myGreen,
           selectionColor: myGreen,

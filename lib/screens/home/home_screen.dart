@@ -58,7 +58,7 @@ class HomeScreenState extends State<HomeScreen> {
         buttonBackgroundColor: myPastelGreen,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 300),
-        height: 60,
+        height: 65,
         index: _page,
         items: const [
           Icon(

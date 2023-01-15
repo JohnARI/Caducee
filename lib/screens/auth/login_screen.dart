@@ -75,10 +75,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: myDarkGreen,
                                 ),
                               ),
-                        const Text(
+                        Text(
                           'Bienvenue sur Caducée',
                           style: TextStyle(
-                            color: Colors.black54,
+                            color: Theme.of(context).textTheme.bodyText1!.color,
                             fontSize: 16.0,
                           ),
                         ),
@@ -174,10 +174,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     horizontal: 25.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
+                                  children: [
                                     Text('Mot de passe oublié ?',
                                         style: TextStyle(
-                                          color: Colors.black54,
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1!
+                                              .color,
                                         )),
                                   ],
                                 ),
