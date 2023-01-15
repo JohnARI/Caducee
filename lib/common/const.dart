@@ -2,7 +2,7 @@ import 'package:caducee/models/drug.dart';
 import 'package:caducee/screens/home/drugs/drug_info.dart';
 import 'package:flutter/material.dart';
 
-const apiSecretKey = "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";
+const apiSecretKey = String.fromEnvironment('API_SECRET_KEY');
 
 const textInputDecoration = InputDecoration(
   fillColor: Colors.white,
