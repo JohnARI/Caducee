@@ -15,14 +15,14 @@ class Symptoms extends StatefulWidget {
 }
 
 Future<String> generateResponse(String prompt) async {
-  final apiKey = apiSecretKey;
+  // final apiKey = apiSecretKey;
 
   var url = Uri.https("api.openai.com", "/v1/completions");
   final response = await http.post(
     url,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $apiKey'
+      // 'Authorization': 'Bearer $apiKey'
     },
     body: jsonEncode({
       "model": "text-davinci-003",
