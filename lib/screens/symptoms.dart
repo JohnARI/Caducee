@@ -15,7 +15,7 @@ class Symptoms extends StatefulWidget {
 }
 
 Future<String> generateResponse(String prompt) async {
-  final apiKey = apiSecretKey;
+  const apiKey = apiSecretKey;
 
   var url = Uri.https("api.openai.com", "/v1/completions");
   final response = await http.post(
@@ -320,7 +320,7 @@ class _SymptomsState extends State<Symptoms> {
                   onStepContinue: () {
                     final isLastStep = currentStep == getSteps().length - 1;
                     if (isLastStep) {
-                      print(symptoms);
+                      // print(symptoms);
                     } else {
                       setState(() => currentStep += 1);
                     }
@@ -356,7 +356,7 @@ class _SymptomsState extends State<Symptoms> {
                                 onPressed: () async {
                                   setState(() {
                                     isLoading = true;
-                                    print(symptoms);
+                                    // print(symptoms);
                                   });
                                   response = await generateResponse(
                                       "J'ai ces symptômes : ${symptoms.join(", ")}. Fais une phrase dans ce style :Vous avez potentiellement: (nom des maladies). (conseil d'aller voir un médecin).");

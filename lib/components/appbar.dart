@@ -1,7 +1,7 @@
 import 'package:caducee/common/const.dart';
 import 'package:caducee/screens/home/drugs/category_list.dart';
 import 'package:caducee/screens/home/drugs/favorite_drug.dart';
-import 'package:caducee/services/database.dart';
+// import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:caducee/screens/home/drugs/drug_list.dart';
 

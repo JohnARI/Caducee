@@ -1,9 +1,10 @@
 import 'package:caducee/models/drug.dart';
 import 'package:caducee/screens/home/drugs/drug_info.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final apiSecretKey = dotenv.env['API_SECRET_KEY'];
+// final apiSecretKey = dotenv.env['API_SECRET_KEY'];
+const apiSecretKey = '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';
 
 const textInputDecoration = InputDecoration(
   fillColor: Colors.white,

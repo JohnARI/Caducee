@@ -6,7 +6,7 @@ import 'package:caducee/screens/splashscreen_wrapper.dart';
 import 'package:caducee/services/authentication.dart';
 import 'package:caducee/services/database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +15,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await dotenv.load();
+  // await dotenv.load();
   runApp(const MyApp());
 }
 
