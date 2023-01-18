@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:caducee/common/const.dart';
+import 'package:caducee/screens/first_symptoms_page.dart';
 import 'package:caducee/screens/result.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:caducee/screens/first_symptoms_page.dart';
 import 'package:http/http.dart' as http;
 
 const backgroundColor = Color(0xff343541);
@@ -61,31 +61,6 @@ class _SymptomsState extends State<Symptoms> {
   int age = 0;
   String genre = "";
 
-  static final List<String> allSymptoms = [
-    "Fièvre",
-    "Fatigue",
-    "Nez bouché",
-    "Nez qui coule",
-    "Mal de gorge",
-    "Éternuements",
-    "Douleurs articulaires",
-    "Douleurs musculaires",
-    "Transpiration",
-    "Transpiration nocturne",
-    "Toux",
-    "Toux sèche",
-    "Toux grasse",
-    "Essoufflement",
-    "Perte de l'odorat",
-    "Perte du goût",
-    "Démangeaisons",
-    "Diarhée",
-    "Constipation",
-    "Œdème",
-    "Vomissements",
-    "Douleurs musculaires",
-    "Maux de tête"
-  ];
   final _items = allSymptoms
       .map((animal) => MultiSelectItem<String>(animal, animal))
       .toList();
@@ -121,6 +96,11 @@ class _SymptomsState extends State<Symptoms> {
                 label: _selectedAge.round() == 1
                     ? "${_selectedAge.round()} an"
                     : "${_selectedAge.round()} ans"),
+            age != 0
+                ? age == 1
+                    ? Text("Vous avez $age an")
+                    : Text("Vous avez $age ans")
+                : Container(),
           ],
         ),
       ),
@@ -240,61 +220,22 @@ class _SymptomsState extends State<Symptoms> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: firstPage
-            ? SafeArea(
-                child: Column(
-                  children: [
-                    const SafeArea(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          "DIAGNOSTIC",
-                          style: TextStyle(fontSize: 15, letterSpacing: 8),
-                          textAlign: TextAlign.center,
-                        ),
+            ? FirstSymptomsPage(
+                button: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        firstPage = false;
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: myDarkGreen,
+                      animationDuration: const Duration(milliseconds: 300),
+                      minimumSize: const Size(150, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    Center(
-                      child: Image.asset(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? 'assets/images/symptoms_first_dark.gif'
-                            : 'assets/images/symptoms_first_light.gif',
-                        height: MediaQuery.of(context).size.height * 0.4,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      "Bienvenue sur le diagnostic symptomatique",
-                      style: Theme.of(context).textTheme.headline5,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Text(
-                        "Le test n'est pas un diagnostic médical, il ne remplace pas une consultation.",
-                        style: Theme.of(context).textTheme.bodyText2,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                    ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            firstPage = false;
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: myDarkGreen,
-                          animationDuration: const Duration(milliseconds: 300),
-                          minimumSize: const Size(150, 50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                        ),
-                        child: const Text("C'est parti !")),
-                  ],
-                ),
+                    child: const Text("C'est parti !")),
               )
             : Theme(
                 data: Theme.of(context).copyWith(
@@ -318,7 +259,6 @@ class _SymptomsState extends State<Symptoms> {
                           final isLastStep =
                               currentStep == getSteps().length - 1;
                           if (isLastStep) {
-                            // print(symptoms);
                           } else {
                             setState(() => currentStep += 1);
                           }
@@ -326,8 +266,6 @@ class _SymptomsState extends State<Symptoms> {
                         onStepCancel: currentStep == 0
                             ? null
                             : () => setState(() => currentStep -= 1),
-
-                        // custom the buttons
                         controlsBuilder:
                             (BuildContext context, ControlsDetails details) {
                           return Row(
@@ -354,23 +292,33 @@ class _SymptomsState extends State<Symptoms> {
                                       ),
                                       onPressed: () async {
                                         if (symptoms.length < 2 ||
-                                            symptoms.length > 6) {
+                                            symptoms.length > 6 ||
+                                            age == 0) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
-                                              backgroundColor: myDarkGreen,
+                                              margin: const EdgeInsets.all(8.0),
+                                              behavior:
+                                                  SnackBarBehavior.floating,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              backgroundColor: Colors.red,
                                               content: Text(
                                                 symptoms.length < 2
                                                     ? "Veuillez renseigner au moins 2 symptômes"
-                                                    : "Veuillez renseigner au plus 6 symptômes",
+                                                    : age == 0
+                                                        ? "Veuillez renseigner votre âge"
+                                                        : "Veuillez renseigner au plus 6 symptômes",
                                               ),
                                             ),
                                           );
                                           return;
                                         }
+
                                         setState(() {
                                           isLoading = true;
-                                          // print(symptoms);
                                         });
                                         response = await generateResponse(
                                             "J'ai $age ans et je suis un(e) $genre et j'ai ces symptômes : ${symptoms.join(", ")}. Fais une phrase dans ce style :Vous avez potentiellement: (nom des maladies). (conseil d'aller voir un médecin)");

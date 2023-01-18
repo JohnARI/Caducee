@@ -1,6 +1,4 @@
 import 'package:caducee/common/const.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -64,7 +62,7 @@ class ResultScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Attention, ce texte à été généré par une IA, ne vous fiez pas à ce texte pour prendre une décision médicale. Consultez toujours un médecin en cas de doute.",
+                    "Attention, ce texte à été généré par une intelligence artificielle, ne vous fiez pas à ce texte pour prendre une décision médicale. Consultez toujours un médecin en cas de doute.",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

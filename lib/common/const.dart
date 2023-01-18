@@ -117,13 +117,15 @@ Container drugTile(
         ),
         title: Text(
           drug.name,
-          style: Theme.of(context).textTheme.bodyText1!.copyWith( // bodyText1 is black
+          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                // bodyText1 is black
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
               ),
         ),
         subtitle: Text(drug.molecule,
-            style: Theme.of(context).textTheme.bodyText2!.copyWith( // bodyText2 is grey (blacl54)
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  // bodyText2 is grey (blacl54)
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,
                 )),
@@ -158,3 +160,40 @@ bookmarkIcon(bool isFavorite) {
     );
   }
 }
+
+final List<String> allSymptoms = [
+  "Anorexie",
+  "Fièvre",
+  "Fatigue",
+  "Nez bouché",
+  "Nez qui coule",
+  "Mal de gorge",
+  "Éternuements",
+  "Douleurs articulaires",
+  "Douleurs musculaires",
+  "Transpirations",
+  "Transpiration nocturne",
+  "Toux",
+  "Toux sèche",
+  "Toux grasse",
+  "Essoufflements",
+  "Perte de l'odorat",
+  "Perte du goût",
+  "Démangeaisons",
+  "Diarhée",
+  "Constipation",
+  "Œdème",
+  "Vomissements",
+  "Maux de tête",
+  "Perte de poids",
+  "Perte d'appétit",
+  "Palpitations",
+  "Rythme cardiaque élevé",
+  "Nausées",
+  "Incontinence urinaire",
+  "Incontinence fécale",
+  'Insomnie',
+  "Hallucination",
+  "Urines abondantes",
+  "Déshydratation",
+];
