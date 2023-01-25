@@ -29,8 +29,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         brightness: Brightness.light,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(
-              color: Colors.black),
+          bodyText1: TextStyle(color: Colors.black),
           bodyText2: TextStyle(
             color: Colors.black54,
           ),
@@ -60,7 +59,6 @@ class MyApp extends StatelessWidget {
             color: Colors.white54,
           ),
         ),
-        
         cardColor: const Color.fromARGB(255, 48, 48, 48),
         shadowColor: Colors.black26,
         textSelectionTheme: const TextSelectionThemeData(
@@ -93,6 +91,9 @@ class MyApp extends StatelessWidget {
           title: 'Caducée',
           debugShowCheckedModeBanner: false,
           home: const SplashScreenWrapper(),
+          routes: {
+            '/home': (context) => const SplashScreenWrapper(),
+          },
           theme: theme,
           darkTheme: darkTheme,
         ),

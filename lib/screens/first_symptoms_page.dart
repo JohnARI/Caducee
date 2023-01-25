@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:caducee/common/const.dart';
 
 class FirstSymptomsPage extends StatefulWidget {
   const FirstSymptomsPage({super.key, required this.button});
