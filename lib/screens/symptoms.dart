@@ -29,7 +29,7 @@ Future<String> generateResponse(String prompt) async {
     body: jsonEncode({
       "model": "text-davinci-003",
       "prompt": prompt,
-      'temperature': 0.5,
+      'temperature': 1,
       'max_tokens': 2000,
       'top_p': 1,
       'frequency_penalty': 0.0,
@@ -37,7 +37,6 @@ Future<String> generateResponse(String prompt) async {
     }),
   );
 
-// Do something with the response
   Map<String, dynamic> newresponse =
       jsonDecode(utf8.decode(response.bodyBytes));
   return newresponse['choices'][0]['text'];
@@ -137,10 +136,10 @@ class _SymptomsState extends State<Symptoms> {
                     ? Theme.of(context).brightness == Brightness.dark
                         ? Center(
                             child: Image.asset(
-                                'assets/images/diagnostic_dark.gif'))
+                                'assets/images/diagnostic_dark.gif', repeat: ImageRepeat.repeat))
                         : Center(
                             child: Image.asset(
-                                'assets/images/diagnostic_light.gif'))
+                                'assets/images/diagnostic_light.gif', repeat: ImageRepeat.repeat))
                     : Stepper(
                         type: StepperType.vertical,
                         steps: getSteps(),
@@ -195,7 +194,7 @@ class _SymptomsState extends State<Symptoms> {
                                           isLoading = true;
                                         });
                                         String response = (await generateResponse(
-                                            "Tu es un médecin et tu vas essayer de faire un diagnostic médical à partir mes symptômes avec des mots simple. J'ai $age ans, je suis un(e) $genre et j'ai ces symptômes : ${symptoms.join(", ")}. Fais une phrase dans ce style :Vous avez potentiellement un(e): (maladie)."));
+                                            "Tu vas agir comme un médecin et tu vas essayer de diagnotiquer ma maladie à partir mes symptômes. J'ai $age ans, je suis un(e) $genre et j'ai ces symptômes : ${symptoms.join(", ")}. Fais une phrase dans ce style :Vous avez un(e): (nom de la maladie)."));
                                         _showResponsePage(
                                             response, genre, age, symptoms);
                                         setState(() {

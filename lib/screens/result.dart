@@ -50,6 +50,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         ? 'assets/images/result_dark.gif'
                         : 'assets/images/result_light.gif',
                     height: MediaQuery.of(context).size.height * 0.4,
+                    repeat: ImageRepeat.repeat,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -210,9 +211,9 @@ class _ResultScreenState extends State<ResultScreen> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pop(context);
                       },
-                      child: const Text("Retour à l'accueil"),
+                      child: const Text("Retour"),
                     ),
                   ],
                 ),

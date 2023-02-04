@@ -66,10 +66,13 @@ class MyApp extends StatelessWidget {
           selectionColor: myGreen,
           selectionHandleColor: myGreen,
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: myTransparent,
           elevation: 0.0,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle:
+              AdaptiveThemeMode.system == AdaptiveThemeMode.dark
+                  ? SystemUiOverlayStyle.light
+                  : SystemUiOverlayStyle.dark,
         ),
       ),
       builder: (theme, darkTheme) => MultiProvider(

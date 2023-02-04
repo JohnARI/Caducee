@@ -31,6 +31,7 @@ class _FirstSymptomsPageState extends State<FirstSymptomsPage> {
                   ? 'assets/images/symptoms_first_dark.gif'
                   : 'assets/images/symptoms_first_light.gif',
               height: MediaQuery.of(context).size.height * 0.4,
+              repeat: ImageRepeat.repeat,
             ),
           ),
           const SizedBox(height: 20),
