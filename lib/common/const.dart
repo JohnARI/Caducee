@@ -33,21 +33,21 @@ const myTransparent = Colors.transparent;
 
 BoxShadow myBoxShadow = const BoxShadow(
   color: Colors.white12,
-  offset: Offset(-6, -6),
-  blurRadius: 20,
+  offset: Offset(-3, -3),
+  blurRadius: 5,
 );
 
 BoxShadow myBoxShadow2 = const BoxShadow(
   color: Colors.black26,
-  offset: Offset(6, 6),
-  blurRadius: 20,
+  offset: Offset(3, 3),
+  blurRadius: 5,
 );
 
 SizedBox tabSearchBar(
     Function(String) onChanged, TextEditingController controller, String hint) {
   return SizedBox(
     child: Padding(
-      padding: const EdgeInsets.only(bottom: 30.0, left: 20.0, right: 20.0),
+      padding: const EdgeInsets.only(bottom: 30.0, left: 5.0, right: 5.0),
       child: TextField(
         autocorrect: false,
         controller: controller,
@@ -87,12 +87,15 @@ Container drugTile(
       boxShadow: [
         BoxShadow(
           color: Theme.of(context).shadowColor,
-          offset: const Offset(-6, -6),
-          blurRadius: 20,
+          offset: const Offset(-3, -3),
+          blurRadius: 5,
         ),
         myBoxShadow2,
       ],
-      borderRadius: BorderRadius.circular(12.0),
+      borderRadius: const BorderRadius.only(
+        topRight: Radius.circular(10.0),
+        bottomRight: Radius.circular(10.0),
+      ),
     ),
     child: InkWell(
       onTap: () {
@@ -143,6 +146,40 @@ Container drugTile(
   );
 }
 
+Container resultPages(
+  AssetImage image,
+  String title,
+  String subtitle,
+  Color color,
+) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    color: color,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Image(
+          image: image,
+          fit: BoxFit.fitWidth,
+        ),
+        Column(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20),
+            ),
+            Text(
+              subtitle,
+              style: const TextStyle(color: Colors.grey),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
 bookmarkIcon(bool isFavorite) {
   if (isFavorite) {
     return const Icon(
@@ -166,6 +203,7 @@ final List<String> allSymptoms = [
   "Démangeaisons",
   "Dépression",
   "Déshydratation",
+  "Diarhée",
   "Douleur articulaire",
   "Douleur dans la poitrine",
   "Douleur dans le dos",
@@ -177,14 +215,14 @@ final List<String> allSymptoms = [
   "Fièvre",
   "Frissons",
   "Hallucination",
-  "Incontinence fécale",
   "Incontinence urinaire",
   "Insomnie",
-  "Maux de tête",
+  "Mal de tête",
   "Mal de gorge",
   "Nausées",
   "Nez bouché",
   "Nez qui coule",
+  "Nez qui saigne",
   "Palpitations",
   "Perte d'appétit",
   "Perte de l'odorat",

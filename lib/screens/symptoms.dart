@@ -69,6 +69,12 @@ class _SymptomsState extends State<Symptoms> {
     isLoading = false;
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    
+  }
+
   List<Step> getSteps() {
     return [
       ageStep(currentStep, age, setState, context, (value) {
@@ -87,14 +93,14 @@ class _SymptomsState extends State<Symptoms> {
         genre,
         (value) {
           setState(() {
-            genre = "homme";
+            genre = "un homme";
             _selectedGender = value!;
           });
         },
         (value) {
           setState(() {
             _selectedGender = value!;
-            genre = "femme";
+            genre = "une femme";
           });
         },
       ),
@@ -194,7 +200,7 @@ class _SymptomsState extends State<Symptoms> {
                                           isLoading = true;
                                         });
                                         String response = (await generateResponse(
-                                            "Tu vas agir comme un médecin et tu vas essayer de diagnotiquer ma maladie à partir mes symptômes. J'ai $age ans, je suis un(e) $genre et j'ai ces symptômes : ${symptoms.join(", ")}. Fais une phrase dans ce style :Vous avez un(e): (nom de la maladie)."));
+                                            "Tu vas agir en tant que médecin et tu vas essayer de faire un diagnostique à partir de mes symptômes. J'ai $age ans, je suis $genre et j'ai ces symptômes : ${symptoms.join(", ")}. Fais une phrase dans ce style :Vous avez potentiellement : (nom des maladies)."));
                                         _showResponsePage(
                                             response, genre, age, symptoms);
                                         setState(() {

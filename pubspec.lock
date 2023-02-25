@@ -296,6 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  liquid_swipe:
+    dependency: "direct main"
+    description:
+      name: liquid_swipe
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   matcher:
     dependency: transitive
     description:
@@ -504,6 +511,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  swipe_cards:
+    dependency: "direct main"
+    description:
+      name: swipe_cards
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0+1"
   term_glyph:
     dependency: transitive
     description:

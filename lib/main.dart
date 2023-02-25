@@ -70,9 +70,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: myTransparent,
           elevation: 0.0,
           systemOverlayStyle:
-              AdaptiveThemeMode.system == AdaptiveThemeMode.dark
-                  ? SystemUiOverlayStyle.light
-                  : SystemUiOverlayStyle.dark,
+              AdaptiveThemeMode.system == AdaptiveThemeMode.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
         ),
       ),
       builder: (theme, darkTheme) => MultiProvider(

@@ -1,6 +1,8 @@
 import 'package:caducee/common/const.dart';
+import 'package:caducee/components/result_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:flutter/services.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen(
@@ -19,12 +21,22 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
-  bool firstPage = true;
+  bool firstPage = false;
+  final int _currentPage = 0;
+  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    firstPage = true;
+    firstPage = false;
+    _pageController =
+        PageController(initialPage: _currentPage, viewportFraction: 0.8);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 
   @override
@@ -109,115 +121,57 @@ class _ResultScreenState extends State<ResultScreen> {
             ),
           )
         : Scaffold(
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    const Text(
-                      "DIAGNOSTIC TERMINÉ",
-                      style: TextStyle(
-                        letterSpacing: 10,
-                        fontSize: 30,
-                      ),
-                    ),
-                    Text(
-                      widget.response,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CircularPercentIndicator(
-                            radius: 60,
-                            percent: widget.age / 100,
-                            animation: true,
-                            animationDuration: 1000,
-                            lineWidth: 10,
-                            circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: myDarkGreen,
-                            backgroundColor: myDarkGreen.withOpacity(0.2),
-                            center: Text(
-                              "${widget.age} ans",
-                              style: const TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                          CircularPercentIndicator(
-                            radius: 60,
-                            percent: 1,
-                            animation: true,
-                            animationDuration: 1000,
-                            lineWidth: 10,
-                            circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: widget.genre == 'homme'
-                                ? Colors.blue
-                                : Colors.pink,
-                            backgroundColor: myDarkGreen.withOpacity(0.2),
-                            center: widget.genre == 'homme'
-                                ? Icon(
-                                    Icons.male_rounded,
-                                    size: 80,
-                                    color: Colors.blue.shade300,
-                                  )
-                                : Icon(
-                                    Icons.female_rounded,
-                                    size: 80,
-                                    color: Colors.pink.shade300,
-                                  ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      children: const [
-                        Icon(Icons.warning, color: Colors.red, size: 30.0),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Ce test n'est pas un diagnostic médical, il ne remplace pas une consultation.",
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 15,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: myDarkGreen,
-                        animationDuration: const Duration(milliseconds: 300),
-                        minimumSize: const Size(150, 50),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32.0),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Retour"),
-                    ),
-                  ],
+            body: LiquidSwipe(
+              enableLoop: false,
+              pages: [
+                ResultPage(
+                  image: const AssetImage('assets/images/result_age.png'),
+                  title: "Vous avez :",
+                  subtitle: "${widget.age.toString()} ans",
+                  color: Colors.white,
+                  button: Container(),
                 ),
+                ResultPage(
+                  image: const AssetImage('assets/images/result_genre.png'),
+                  title: "Vous êtes :",
+                  subtitle: widget.genre,
+                  color: Colors.grey.shade100,
+                  button: Container(),
+                ),
+                ResultPage(
+                  image: const AssetImage('assets/images/result_symptoms.png'),
+                  title: "Vous avez ces symptômes :",
+                  subtitle: widget.symptoms.toString(),
+                  color: Colors.white,
+                  button: Container(),
+                ),
+                ResultPage(
+                  image: const AssetImage('assets/images/result_result.png'),
+                  title: "Résultat :",
+                  subtitle: widget.response,
+                  color: Colors.grey.shade100,
+                  button: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                backgroundColor: myDarkGreen,
+                animationDuration: const Duration(milliseconds: 300),
+                minimumSize: const Size(150, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32.0),
+                ),
+                  ),
+                  child: const Text("Retour à l'accueil"),
+                ),
+                ),
+              ],
+              slideIconWidget: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
               ),
+              positionSlideIcon: 0.5,
+              waveType: WaveType.liquidReveal,
             ),
           );
   }
